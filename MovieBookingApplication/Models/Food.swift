@@ -34,7 +34,7 @@ class FoodData {
     return [
       Food(
         id: UUID(),
-        name: "Cola",
+        name: "Coca Cola",
         sizes: [
           FoodSize(name: "Small", priceModifier: 0.0),
           FoodSize(name: "Medium", priceModifier: 0.5),
@@ -60,7 +60,7 @@ class FoodData {
       ),
       Food(
         id: UUID(),
-        name: "popcorn",
+        name: "Popcorn",
         sizes: [
           FoodSize(name: "Small", priceModifier: 0.0),
           FoodSize(name: "Medium", priceModifier: 0.75),
@@ -73,7 +73,7 @@ class FoodData {
       ),
       Food(
         id: UUID(),
-        name: "caramel popcorn",
+        name: "Caramel popcorn",
         sizes: [
           FoodSize(name: "Small", priceModifier: 0.0),
           FoodSize(name: "Medium", priceModifier: 0.75),
