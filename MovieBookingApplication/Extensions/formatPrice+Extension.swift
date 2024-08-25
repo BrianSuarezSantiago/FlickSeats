@@ -14,7 +14,7 @@ extension Double {
         formatter.currencyCode = currency
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
-        
+
         if let formattedPrice = formatter.string(from: NSNumber(value: self)) {
             return formattedPrice
         } else {

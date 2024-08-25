@@ -13,7 +13,7 @@ extension DateFormatter {
     formatter.dateFormat = "E"
     return formatter.string(from: date)
   }
-  
+
   static func formattedDate(date: Date, format: String) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = format

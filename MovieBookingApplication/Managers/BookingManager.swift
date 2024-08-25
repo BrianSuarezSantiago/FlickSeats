@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 final class BookingManager {
-    
+
     // MARK: - Shared Instance
     static let shared = BookingManager()
-    
+
     // MARK: - Private Init
     private init() {}
-    
+
     // MARK: - Properties
     var selectedMovie: Movie?
     var selectedDate: Date?
@@ -27,6 +27,7 @@ final class BookingManager {
     private(set) var numberOfTickets: Int = 0
     weak var ticketViewController: TicketViewController?
     weak var tabBarController: TabBarController?
+
     // MARK: - Methods
     func resetBooking() {
         selectedMovie = nil
@@ -39,7 +40,7 @@ final class BookingManager {
         numberOfTickets = 0
         updateBadgeCounts()
     }
-    
+
     func calculateTotalPrice() {
         let ticketPrice = Double(getSelectedSeats().count) * (selectedTimeSlot?.ticketPrices.first?.price ?? 0)
         let foodPrice = foodManager.allFoodItems.reduce(0) { total, food in
@@ -49,7 +50,7 @@ final class BookingManager {
         }
         totalPrice = ticketPrice + foodPrice
     }
-    
+
     func getSelectedOrderedFood() -> [OrderedFood] {
         return FoodManager.shared.allFoodItems.flatMap { food in
             food.sizes.compactMap { size in
@@ -58,40 +59,40 @@ final class BookingManager {
             }
         }
     }
-    
+
     func setSeats(for sections: Int, rowsPerSection: [Int]) {
         seatManager.setSeats(for: sections, rowsPerSection: rowsPerSection)
     }
-    
+
     func getSeat(by row: Int, seat: Int) -> Seat? {
         return seatManager.getSeat(by: row, seat: seat)
     }
-    
+
     func selectSeat(_ seat: Seat) {
         seatManager.selectSeat(seat)
     }
-    
+
     func deselectSeat(_ seat: Seat) {
         seatManager.deselectSeat(seat)
     }
-    
+
     func updateSeat(_ seat: Seat) {
         seatManager.updateSeat(seat)
     }
-    
+
     func getAllSeats() -> [[Seat]] {
         return seatManager.getAllSeats()
     }
-    
+
     func getSelectedSeats() -> [Seat] {
         return seatManager.getSelectedSeats()
     }
-    
+
     func getBookingSummary() -> (movie: Movie?, seats: [Seat], date: Date?, timeSlot: TimeSlot?) {
         let selectedSeats = getSelectedSeats()
         return (selectedMovie, selectedSeats, selectedDate, selectedTimeSlot)
     }
-    
+
     func completeBooking() {
         let (movie, seats, date, timeSlot) = getBookingSummary()
         if let movie = movie, let date = date, let timeSlot = timeSlot {
@@ -112,19 +113,19 @@ final class BookingManager {
         updateBadgeCounts()
         updateTicketViewController()
     }
+
     private func updateTicketViewController() {
         DispatchQueue.main.async { [weak self] in
             self?.ticketViewController?.updateViewState()
         }
     }
-    
+
     func cancelTicket() {
         numberOfTickets = max(0, numberOfTickets - 1)
         updateBadgeCounts()
     }
-    
-    // MARK: - Update Badge Count
-    
+
+    // MARK: - Update Badge Count    
     func updateBadgeCounts() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

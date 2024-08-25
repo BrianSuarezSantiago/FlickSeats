@@ -4,7 +4,6 @@
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 
-
 import Foundation
 
 protocol PaymentOptionsViewModelDelegate: AnyObject {
@@ -15,20 +14,20 @@ protocol PaymentOptionsViewModelDelegate: AnyObject {
 final class PaymentOptionsViewModel {
     private(set) var savedCards: [Card] = []
     private(set) var selectedCardIndex: Int?
-    
+
     weak var delegate: PaymentOptionsViewModelDelegate?
-    
+
     func loadSavedCards() {
         savedCards = PaymentManager.shared.getSavedCards()
         selectedCardIndex = savedCards.isEmpty ? nil : 0
         delegate?.didUpdateCardOptions()
     }
-    
+
     func selectCard(at index: Int) {
         guard index < savedCards.count else { return }
         selectedCardIndex = index
     }
-    
+
     func getSelectedCard() -> Card? {
         guard let selectedCardIndex = selectedCardIndex else { return nil }
         return savedCards[selectedCardIndex]
@@ -39,7 +38,7 @@ final class PaymentOptionsViewModel {
             delegate?.didProcessPayment(success: false, message: "Please select a payment method")
             return
         }
-        
+
         let amount = BookingManager.shared.totalPrice
         PaymentManager.shared.processPayment(amount: amount, card: selectedCard) { [weak self] success, message in
             if success {

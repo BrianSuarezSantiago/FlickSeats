@@ -13,7 +13,6 @@ protocol AddNewCardViewControllerDelegate: AnyObject {
 
 final class AddNewCardViewController: UIViewController {
     // MARK: - Properties
-    
     weak var delegate: AddNewCardViewControllerDelegate?
     private let mainStackView: UIStackView = {
         let view = UIStackView()
@@ -22,7 +21,7 @@ final class AddNewCardViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.text = "Add payment card"
@@ -31,35 +30,35 @@ final class AddNewCardViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
-    
+
     private let nameTextField: UITextField = {
         let textField = CustomTextField()
         textField.configure(placeholder: "Name on card", keyboardType: .alphabet, icon: UIImage(systemName: "person"))
         textField.tag = TextFieldType.name.rawValue
         return textField
     }()
-    
+
     private let cardNumberTextField: UITextField = {
         let textField = CustomTextField()
         textField.configure(placeholder: "0000 0000 0000 0000", keyboardType: .numberPad, icon: UIImage(systemName: "creditcard"))
         textField.tag = TextFieldType.cardNumber.rawValue
         return textField
     }()
-    
+
     private lazy var dateAndCvcStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [expiryDateTextField, cvcTextField])
         stackView.distribution = .fillEqually
         stackView.spacing = 16
         return stackView
     }()
-    
+
     private let expiryDateTextField: UITextField = {
         let textField = CustomTextField()
         textField.configure(placeholder: "MM/YY", keyboardType: .numberPad, icon: UIImage(systemName: "calendar"))
         textField.tag = TextFieldType.expiryDate.rawValue
         return textField
     }()
-    
+
     private let cvcTextField: UITextField = {
         let textField = CustomTextField()
         textField.configure(placeholder: "CVC", keyboardType: .numberPad, icon: UIImage(systemName: "creditcard.and.123"))
@@ -67,19 +66,18 @@ final class AddNewCardViewController: UIViewController {
         return textField
     }()
 
-    
     private let addCardButton: ReusableButton = {
         let button = ReusableButton(title: "Add card", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Methods
     private func setup() {
         setupBackground()
@@ -90,12 +88,11 @@ final class AddNewCardViewController: UIViewController {
         updateAddCardButtonState()
         setupButtonAction()
     }
-    
-    
+
     private func setupBackground() {
         view.backgroundColor = .customBackgroundColor
     }
-    
+
     private func setupSubviews() {
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(headerLabel)
@@ -104,13 +101,13 @@ final class AddNewCardViewController: UIViewController {
         mainStackView.addArrangedSubview(dateAndCvcStackView)
         mainStackView.addArrangedSubview(addCardButton)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
+ 
             nameTextField.heightAnchor.constraint(equalToConstant: 48),
             cardNumberTextField.heightAnchor.constraint(equalToConstant: 48),
             expiryDateTextField.heightAnchor.constraint(equalToConstant: 48),
@@ -118,45 +115,42 @@ final class AddNewCardViewController: UIViewController {
             addCardButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
+ 
     private func setupTextFieldDelegates() {
         [nameTextField, cardNumberTextField, expiryDateTextField, cvcTextField].forEach {
             $0.delegate = self
             $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         }
     }
-    
+ 
     private func allFieldsAreValid() -> Bool {
         let nameIsValid = nameTextField.text?.contains(" ") ?? false && !nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         let cardNumberIsValid = cardNumberTextField.text?.isEmpty == false && cardNumberTextField.text?.replacingOccurrences(of: " ", with: "").count == 16
         let expiryDateIsValid = expiryDateTextField.text?.isEmpty == false && expiryDateTextField.text?.replacingOccurrences(of: "/", with: "").count == 4
         let cvcIsValid = cvcTextField.text?.isEmpty == false &&
         cvcTextField.text!.count == 3
-        
+
         return nameIsValid && cardNumberIsValid && expiryDateIsValid && cvcIsValid
     }
 
-    
     private func setupTapGestureRecogniser() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleEndEditing))
         view.addGestureRecognizer(tap)
     }
-    
-    
+
     private func updateAddCardButtonState() {
         addCardButton.isEnabled = allFieldsAreValid()
         addCardButton.alpha = allFieldsAreValid() ? 1.0 : 0.5
     }
-    
+
     @objc private func handleEndEditing() {
         view.endEditing(true)
     }
-    
-    
+
     @objc private func textFieldDidChange() {
         updateAddCardButtonState()
     }
-    
+
     @objc private func addCardButtonTapped() {
         if allFieldsAreValid() {
             saveCard()
@@ -164,7 +158,7 @@ final class AddNewCardViewController: UIViewController {
             AlertManager.shared.showAlert(from: self, type: .invalidInput)
         }
     }
-    
+
     private func saveCard() {
         guard let name = nameTextField.text,
               let cardNumber = cardNumberTextField.text,
@@ -172,23 +166,22 @@ final class AddNewCardViewController: UIViewController {
               let cvc = cvcTextField.text else {
             return
         }
-        
+
         let card = Card(id: UUID().uuidString,
                         cardholderName: name,
                         cardNumber: cardNumber,
                         expirationDate: expiryDate,
                         cvc: cvc,
                         brand: .visa)
-        
+
         PaymentManager.shared.addCard(card)
         delegate?.didAddNewCard()
         dismiss(animated: true, completion: nil)
     }
-    
+
      private func setupButtonAction() {
          addCardButton.addTarget(self, action: #selector(addCardButtonTapped), for: .touchUpInside)
      }
-     
 }
 
 // MARK: - TextFieldTypes
@@ -207,7 +200,7 @@ extension AddNewCardViewController: UITextFieldDelegate {
             let allowedCharacters = CharacterSet.letters.union(.whitespaces)
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
-            
+
         case .cardNumber:
             let currentText = textField.text ?? ""
             let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
@@ -221,7 +214,7 @@ extension AddNewCardViewController: UITextFieldDelegate {
             }
             textField.text = formattedText
             return false
-            
+
         case .expiryDate:
             let fullText = (textField.text ?? "") as NSString
             let updatedText = fullText.replacingCharacters(in: range, with: string)
@@ -239,14 +232,14 @@ extension AddNewCardViewController: UITextFieldDelegate {
             }
             textField.text = newText
             return false
-            
+
         case .cvc:
             let allowedCharacters = CharacterSet.decimalDigits
             let characterSet = CharacterSet(charactersIn: string)
             let maxLength = 3
             let currentText = textField.text ?? ""
             return allowedCharacters.isSuperset(of: characterSet) && currentText.count + string.count <= maxLength
-            
+
         case .none:
             return true
         }

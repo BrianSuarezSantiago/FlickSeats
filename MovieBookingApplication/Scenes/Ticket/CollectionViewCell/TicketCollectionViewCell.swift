@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class TicketCollectionViewCell: UICollectionViewCell {
-    
     private let ticketView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
@@ -21,7 +20,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -31,7 +30,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -39,6 +38,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 8
         return imageView
     }()
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -46,19 +46,21 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .darkGray
         return label
     }()
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .darkGray
         return label
     }()
-    
+
     private lazy var dateTimeStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [dateLabel, timeLabel])
         stackView.axis = .horizontal
@@ -66,24 +68,27 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let rowLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
+
     private let seatsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
+
     private let barcodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+
     private let snacksLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -91,7 +96,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
+
     private lazy var snackStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [snacksLabel])
         stackView.axis = .vertical
@@ -99,7 +104,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -107,18 +112,17 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .right
         return label
     }()
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
         setupConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupSubviews() {
         contentView.addSubview(ticketView)
         ticketView.addSubview(contentStackView)
@@ -131,20 +135,19 @@ class TicketCollectionViewCell: UICollectionViewCell {
         contentStackView.addArrangedSubview(totalPriceLabel)
         contentStackView.addArrangedSubview(barcodeImageView)
     }
-    
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             ticketView.topAnchor.constraint(equalTo: contentView.topAnchor),
             ticketView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             ticketView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             ticketView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            
+
             contentStackView.topAnchor.constraint(equalTo: ticketView.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: ticketView.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: ticketView.trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: ticketView.bottomAnchor),
-            
+
             posterImageView.heightAnchor.constraint(equalToConstant: 180),
             barcodeImageView.heightAnchor.constraint(equalToConstant: 70)
         ])
@@ -155,14 +158,14 @@ class TicketCollectionViewCell: UICollectionViewCell {
         dateLabel.text = "Date: \(DateManager.shared.formatDate(ticket.date ?? Date(), format: "MMMM dd"))"
         timeLabel.text = "Time: \(ticket.timeSlot ?? "")"
         seatsLabel.text = "Seats: \(ticket.seats ?? "")"
-        
+
         if let seats = ticket.seats?.split(separator: ",").first {
             rowLabel.text = "Row: \(seats.prefix(1))"
         }
-        
+
         snacksLabel.text = "Snacks: \(ticket.snacks ?? "")"
         totalPriceLabel.text = String(format: "$%.2f", ticket.totalPrice)
-    
+
         if let posterPath = ticket.posterPath {
             print("Debug - Loading image for ticket: \(ticket.movieTitle ?? "Unknown"), Poster Path: \(posterPath)")
             NetworkManager.shared.downloadImage(from: posterPath) { [weak self] image in
@@ -178,8 +181,6 @@ class TicketCollectionViewCell: UICollectionViewCell {
         } else {
             print("Debug - No poster path for ticket: \(ticket.movieTitle ?? "Unknown")")
         }
-    
         barcodeImageView.image = UIImage(named: "barcode")
     }
 }
-

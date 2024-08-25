@@ -4,14 +4,16 @@
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
+
 import Foundation
 import UIKit
 import Lottie
 
 class EmptyStateViewController: UIViewController {
+
     // MARK: - Properties
     private var animationView: LottieAnimationView!
-    
+
     private let emptyStateStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -20,27 +22,27 @@ class EmptyStateViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let emptyStateTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .white
         return label
     }()
-    
+
     private let paragraphStyle: NSMutableParagraphStyle = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8
         style.alignment = .center
         return style
     }()
-    
+
     private lazy var emptyStateDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
         label.textColor = .white
-        
+
         let attributedText = NSMutableAttributedString(string: "")
         attributedText.addAttribute(
             NSAttributedString.Key.paragraphStyle,
@@ -50,7 +52,7 @@ class EmptyStateViewController: UIViewController {
         label.attributedText = attributedText
         return label
     }()
-    
+
     // MARK: - Init
     init(title: String, description: String, animationName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -64,31 +66,30 @@ class EmptyStateViewController: UIViewController {
         emptyStateDescriptionLabel.attributedText = attributedText
         setupEmptyHistoryAnimationView(animationName)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+
     // MARK: - Methods
     private func setup() {
         setupSubviews()
         setupConstraints()
     }
-    
-    
+
     private func setupSubviews() {
         view.addSubview(animationView)
         view.addSubview(emptyStateStackView)
         emptyStateStackView.addArrangedSubview(emptyStateTitleLabel)
         emptyStateStackView.addArrangedSubview(emptyStateDescriptionLabel)
     }
-    
+
     private func setupEmptyHistoryAnimationView(_ animationName: String) {
         animationView = .init(name: animationName)
         animationView.contentMode = .scaleAspectFit
@@ -98,13 +99,13 @@ class EmptyStateViewController: UIViewController {
         view.addSubview(animationView)
         animationView.play()
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             emptyStateStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             emptyStateStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             emptyStateStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 60),
-            
+
             animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             animationView.bottomAnchor.constraint(equalTo: emptyStateStackView.topAnchor, constant: -20),
             animationView.widthAnchor.constraint(lessThanOrEqualToConstant: 240),

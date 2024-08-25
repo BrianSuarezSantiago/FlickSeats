@@ -4,7 +4,6 @@
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 
-
 import UIKit
 
 protocol TimeSlotCollectionViewCellDelegate: AnyObject {
@@ -15,7 +14,7 @@ final class TimeSlotCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Properties
     weak var delegate: TimeSlotCollectionViewCellDelegate?
-    
+
     private let cellView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -114,15 +113,15 @@ final class TimeSlotCollectionViewCell: UICollectionViewCell {
             self.cellView.transform = self.isSelected ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
         }
     }
-    
+
     // MARK: - Actions
     @objc private func cellTapped() {
         isSelected.toggle()
         delegate?.timeSlotCellTapped(self)
-        
+
         let impact = UIImpactFeedbackGenerator(style: .light)
         impact.impactOccurred()
-        
+
         UIView.animate(withDuration: 0.1, animations: {
             self.cellView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }) { _ in

@@ -14,7 +14,7 @@ struct Card: Codable {
     let expirationDate: String
     let cvc: String
     let brand: CardBrand
-    
+
     enum CardBrand: String, Codable {
         case visa
         case mastercard

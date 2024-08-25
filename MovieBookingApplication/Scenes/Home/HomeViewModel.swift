@@ -18,20 +18,20 @@ protocol MoviesListViewModelDelegate: AnyObject {
 final class HomeViewModel {
     private var movies: [Movie]?
     private var upcomingMovies: [Movie]?
-    
+
     weak var delegate: MoviesListViewModelDelegate?
-    
+
     func viewDidLoad() {
         fetchMovies()
         fetchUpcomingMovies()
     }
-    
+
     func didSelectMovie(at indexPath: IndexPath) {
         if let movieId = movies?[indexPath.row].id {
             delegate?.navigateToMovieDetails(with: movieId)
         }
     }
-    
+
     func didSelectUpcomingMovie(at indexPath: IndexPath) {
         if let selectedMovie = upcomingMovies?[indexPath.row] {
             delegate?.navigateToUpcomingMovieDetails(with: selectedMovie.id)
@@ -49,6 +49,7 @@ final class HomeViewModel {
             }
         }
     }
+
     private func fetchUpcomingMovies() {
         NetworkManager.shared.fetchUpcomingMovies { [weak self] result in
             switch result {

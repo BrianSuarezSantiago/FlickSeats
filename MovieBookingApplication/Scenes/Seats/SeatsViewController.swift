@@ -9,17 +9,16 @@ import UIKit
 import SwiftUI
 
 final class SeatsViewController: UIViewController, UIViewControllerTransitioningDelegate {
-    
+
     // MARK: - Properties
-    
     private let viewModel: SeatsViewModel
-    
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -28,7 +27,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
-    
+
     private var collectionView: UICollectionView = {
         let layout = SeatCollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -36,7 +35,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    
+
     private let selectedDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Selected date"
@@ -44,7 +43,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         label.textColor = .white
         return label
     }()
-    
+
     private var dateCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -53,7 +52,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    
+
     private let selectedTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "Selected time"
@@ -61,7 +60,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         label.textColor = .white
         return label
     }()
-    
+
     private var timeSlotCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -70,7 +69,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
-    
+
     private lazy var timeAndDateStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [selectedDateLabel, dateCollectionView,selectedTimeLabel, timeSlotCollectionView])
         stackView.axis = .vertical
@@ -79,7 +78,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let selectSeatsLabel: UILabel = {
         let label = UILabel()
         label.text = "Select seats"
@@ -88,7 +87,7 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         label.textAlignment = .center
         return label
     }()
-    
+
     private let screenLabel: UILabel = {
         let label = UILabel()
         label.text = "screen"
@@ -97,13 +96,13 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         label.textAlignment = .center
         return label
     }()
-    
+
     private let arcView: ArcView = {
         let view = ArcView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var selectSeatsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [selectSeatsLabel, arcView, screenLabel])
         stackView.axis = .vertical
@@ -111,25 +110,24 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let nextButton: ReusableButton = {
         let button = ReusableButton(title: "Next", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: - Init
     init(viewModel: SeatsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - ViewLifeCycles
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -138,46 +136,46 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         setupScrollView()
         nextButton.addTarget(self, action: #selector(navigateToFoodViewController), for: .touchUpInside)
     }
-    
+
     // MARK: - Private Methods
     private func setup() {
         setupBackground()
         setupSubviews()
         setupConstraints()
     }
-    
+
     private func setupBackground() {
         view.backgroundColor = .customBackgroundColor
     }
-    
+
     private func setupScrollView() {
         scrollView.showsVerticalScrollIndicator = false
     }
-    
+
     private func setupCollectionViews() {
         setupDateCollectionView()
         setupTimeSlotCollectionView()
         setupSeatsCollectionView()
     }
-    
+
     private func setupDateCollectionView() {
         dateCollectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: "DateCollectionViewCell")
         dateCollectionView.dataSource = self
         dateCollectionView.delegate = self
     }
-    
+
     private func setupTimeSlotCollectionView() {
         timeSlotCollectionView.register(TimeSlotCollectionViewCell.self, forCellWithReuseIdentifier: "TimeSlotCollectionViewCell")
         timeSlotCollectionView.dataSource = self
         timeSlotCollectionView.delegate = self
     }
-    
+
     private func setupSeatsCollectionView() {
         collectionView.register(SeatCell.self, forCellWithReuseIdentifier: "seatCell")
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    
+
     private func setupSubviews() {
         view.addSubview(scrollView)
         view.addSubview(nextButton)
@@ -186,43 +184,42 @@ final class SeatsViewController: UIViewController, UIViewControllerTransitioning
         mainStackView.addArrangedSubview(selectSeatsStackView)
         mainStackView.addArrangedSubview(collectionView)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
+
             mainStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             mainStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
+
             dateCollectionView.heightAnchor.constraint(equalToConstant: 80),
             timeSlotCollectionView.heightAnchor.constraint(equalToConstant: 100),
-            
+
             selectSeatsStackView.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor),
             selectSeatsStackView.heightAnchor.constraint(equalToConstant: 80),
-            
+
             collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            
+
             nextButton.heightAnchor.constraint(equalToConstant: 60),
             nextButton.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor),
             nextButton.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if let selectedDateIndex = viewModel.selectedDateIndex {
             let indexPath = IndexPath(item: selectedDateIndex, section: 0)
             dateCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
-        
         if let selectedTimeSlotIndex = viewModel.selectedTimeSlotIndex {
             let indexPath = IndexPath(item: selectedTimeSlotIndex, section: 0)
             timeSlotCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -238,7 +235,7 @@ extension SeatsViewController: UICollectionViewDataSource, UICollectionViewDeleg
         }
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case dateCollectionView:
@@ -249,7 +246,7 @@ extension SeatsViewController: UICollectionViewDataSource, UICollectionViewDeleg
             return viewModel.rowsPerSection[section]
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case dateCollectionView:
@@ -272,7 +269,7 @@ extension SeatsViewController: UICollectionViewDataSource, UICollectionViewDeleg
             return cell
         }
     }
-    
+
     // MARK: - CollectionView Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
@@ -306,7 +303,7 @@ extension SeatsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: cellWidth, height: 40)
         }
     }
-    
+
     @objc private func navigateToFoodViewController() {
         if !viewModel.canProceedToFoodSelection() {
             AlertManager.shared.showAlert(from: self, type: .selectionIncomplete)

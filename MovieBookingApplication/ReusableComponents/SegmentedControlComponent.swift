@@ -11,13 +11,12 @@ import UIKit
 class SegmentedControlComponent: UIView {
 
     // MARK: - Properties
-
     var segmentTitles: [String] = [] {
         didSet {
             updateSegmentedControl()
         }
     }
-    
+
     var selectedSegmentIndex: Int = 0 {
         didSet {
             segmentedControl.selectedSegmentIndex = selectedSegmentIndex
@@ -47,7 +46,6 @@ class SegmentedControlComponent: UIView {
     }()
 
     // MARK: - Initialization
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -70,7 +68,6 @@ class SegmentedControlComponent: UIView {
     }
 
     // MARK: - Private Methods
-
     private func updateSegmentedControl() {
         segmentedControl.removeAllSegments()
         for (index, title) in segmentTitles.enumerated() {

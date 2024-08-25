@@ -10,7 +10,7 @@ import UIKit
 final class OrderViewController: UIViewController, UITableViewDelegate {
     // MARK: - Properties
     private let viewModel: OrderViewModel
-    
+
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -18,7 +18,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private let seatsLabel: UILabel = {
         let label = UILabel()
         label.text = "Seats"
@@ -26,7 +26,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.textColor = .white
         return label
     }()
-    
+
     private let seatsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         tableView.register(SeatTableViewCell.self, forCellReuseIdentifier: "SeatTableViewCell")
         return tableView
     }()
-    
+
     private let snacksLabel: UILabel = {
         let label = UILabel()
         label.text = "Snacks"
@@ -42,7 +42,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.textColor = .white
         return label
     }()
-    
+
     private let snacksTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         tableView.register(SnackTableViewCell.self, forCellReuseIdentifier: "SnackTableViewCell")
         return tableView
     }()
-    
+
     private let totalLabel: UILabel = {
         let label = UILabel()
         label.text = "Total"
@@ -58,7 +58,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.textColor = .white
         return label
     }()
-    
+
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -66,14 +66,14 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.textAlignment = .right
         return label
     }()
-    
+
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private let movieTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -81,7 +81,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let movieGenreLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -89,20 +89,20 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let selectedDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .white
         return label
     }()
-    
+
     private let payButton: ReusableButton = {
         let button = ReusableButton(title: "Pay", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var movieLabelStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [movieTitleLabel, movieGenreLabel, selectedDateLabel])
         stackView.axis = .vertical
@@ -111,6 +111,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+
     private lazy var movieStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [posterImageView, movieLabelStackView])
         stackView.axis = .horizontal
@@ -120,7 +121,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private lazy var seatsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seatsLabel, seatsTableView])
         stackView.axis = .vertical
@@ -129,8 +130,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
-    
+
     private lazy var snackStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [snacksLabel, snacksTableView])
         stackView.axis = .vertical
@@ -138,7 +138,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private lazy var totalPriceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [totalLabel, priceLabel])
         stackView.axis = .horizontal
@@ -147,16 +147,17 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+
     // MARK: - Init
     init(viewModel: OrderViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,17 +168,17 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         updateMovieInfo()
         payButton.addTarget(self, action: #selector(payButtonTapped), for: .touchUpInside)
     }
-    
-    
+
     private func setup() {
         setupBackground()
         setupSubviews()
         setupConstraints()
     }
+
     private func setupBackground() {
         view.backgroundColor = .customBackgroundColor
     }
-    
+
     private func setupSubviews() {
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(movieStackView)
@@ -186,26 +187,25 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         mainStackView.addArrangedSubview(totalPriceStackView)
         mainStackView.addArrangedSubview(payButton)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            
+
             movieStackView.heightAnchor.constraint(equalToConstant: 120),
             posterImageView.widthAnchor.constraint(equalToConstant: 80),
             posterImageView.heightAnchor.constraint(equalToConstant: 120),
             snackStackView.heightAnchor.constraint(equalToConstant: 150),
-            
+
             totalPriceStackView.heightAnchor.constraint(equalToConstant: 30),
-            
+
             payButton.heightAnchor.constraint(equalToConstant: 60),
-            
         ])
     }
-    
+
     private func setupTableView() {
         seatsTableView.dataSource = self
         seatsTableView.delegate = self
@@ -214,7 +214,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
         seatsTableView.register(SeatTableViewCell.self, forCellReuseIdentifier: "SeatTableViewCell")
         snacksTableView.register(SnackTableViewCell.self, forCellReuseIdentifier: "SnackTableViewCell")
     }
-    
+
     private func updateTotalPrice() {
         viewModel.recalculateTotalPrice()
         let totalPrice = viewModel.totalPrice
@@ -226,7 +226,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
             self.posterImageView.image = UIImage(named: "placeholder")
             return
         }
-        
+
         if let posterPath = movie.posterPath {
             NetworkManager.shared.downloadImage(from: posterPath) { [weak self] image in
                 DispatchQueue.main.async {
@@ -241,13 +241,14 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
             self.posterImageView.image = UIImage(named: "placeholder")
         }
     }
-    
+
     private func updateMovieInfo() {
         movieTitleLabel.text = viewModel.movieTitle
         movieGenreLabel.text = viewModel.movieGenres
     }
 }
-    // MARK: - UITableViewDataSource
+
+// MARK: - UITableViewDataSource
 extension OrderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == seatsTableView {
@@ -262,7 +263,7 @@ extension OrderViewController: UITableViewDataSource {
         if tableView == seatsTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SeatTableViewCell", for: indexPath) as? SeatTableViewCell ?? SeatTableViewCell(style: .default, reuseIdentifier: "SeatTableViewCell")
             let seat = viewModel.selectedSeats[indexPath.row]
-            
+
             if let showTime = viewModel.selectedTimeSlot?.showTime,
                let ticketPrices = viewModel.selectedTimeSlot?.ticketPrices {
                 cell.configure(with: seat, showTime: showTime, ticketPrices: ticketPrices)
@@ -279,22 +280,19 @@ extension OrderViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
+
     // MARK: - Actions
-    
     @objc private func payButtonTapped() {
         let bookingManager = BookingManager.shared
         bookingManager.calculateTotalPrice()
-        
+
         let paymentOptionsVC = PaymentOptionsViewController()
         paymentOptionsVC.modalPresentationStyle = .pageSheet
 
-        
         if let sheet = paymentOptionsVC.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
         }
-        
         present(paymentOptionsVC, animated: true, completion: nil)
     }
 }

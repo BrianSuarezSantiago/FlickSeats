@@ -17,7 +17,7 @@ struct Seat {
   var seatCode: String {
     get { "\(["A", "B", "C", "D", "E", "F", "G", "H", "J"][row])\(seat)" }
   }
-  
+
   func isIdentical(_ otherSeat: Seat) -> Bool { seatCode == otherSeat.seatCode }
 
   init(_ row: Int, _ seat: Int, selected: Bool = false, sold: Bool = false, type: String? = nil) {

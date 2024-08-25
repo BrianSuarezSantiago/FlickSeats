@@ -8,9 +8,8 @@
 import UIKit
 
 final class SuccessViewController: UIViewController {
-    
+
     // MARK: - Properties
-    
     private let successImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
         imageView.tintColor = .systemGreen
@@ -18,7 +17,7 @@ final class SuccessViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Payment successful"
@@ -28,7 +27,7 @@ final class SuccessViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.text = "Show your tickets upon entering the Cinema hall\nand pick up your snacks at the Cinemabar"
@@ -39,7 +38,7 @@ final class SuccessViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let goToTicketsButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Check your tickets", for: .normal)
@@ -55,48 +54,48 @@ final class SuccessViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
-    
+
     private func setup() {
         setupBackground()
         setupSubviews()
         setupConstraints()
     }
-    
+
     private func setupBackground() {
         view.backgroundColor = .black
     }
-    
+
     private func setupSubviews() {
         view.addSubview(successImageView)
         view.addSubview(titleLabel)
         view.addSubview(messageLabel)
         view.addSubview(goToTicketsButton)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             successImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             successImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
             successImageView.widthAnchor.constraint(equalToConstant: 80),
             successImageView.heightAnchor.constraint(equalToConstant: 80),
-            
+
             titleLabel.topAnchor.constraint(equalTo: successImageView.bottomAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
+
             goToTicketsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             goToTicketsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             goToTicketsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             goToTicketsButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
+
         goToTicketsButton.addTarget(self, action: #selector(goToTicketsTapped), for: .touchUpInside)
     }
-    
+
     @objc private func goToTicketsTapped() {
         dismiss(animated: true) {
         }

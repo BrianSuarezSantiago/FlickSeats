@@ -24,15 +24,15 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
     private var movieId: Int
     private let showtimeManager = MovieShowtimeManager.shared
     weak var delegate: MovieDetailsViewModelDelegate?
-    
+
     init(movieId: Int) {
         self.movieId = movieId
     }
-    
+
     func viewDidLoad() {
         fetchMovieDetails()
     }
-    
+
     private func fetchMovieDetails() {
         Task {
             do {
@@ -44,13 +44,13 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
             }
         }
     }
-    
+
     private func downloadImage(from url: String) {
         NetworkManager.shared.downloadImage(from: url) { [weak self] image in
             self?.delegate?.movieDetailsImageFetched(image ?? UIImage())
         }
     }
-    
+
     func fetchTimeSlots(for date: Date) {
         let timeSlots = showtimeManager.fetchTimeSlots(for: date)
         delegate?.timeSlotsFetched(timeSlots)
