@@ -1,6 +1,6 @@
 //
 //  SeatTableViewCell.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -8,6 +8,7 @@
 import UIKit
 
 class SeatTableViewCell: UITableViewCell {
+
     // MARK: - Properties
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()

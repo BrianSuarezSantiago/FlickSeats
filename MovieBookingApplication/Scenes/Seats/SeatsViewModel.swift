@@ -1,6 +1,6 @@
 //
 //  SeatsViewModel.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -8,6 +8,7 @@
 import UIKit
 
 final class SeatsViewModel {
+
     // MARK: - Properties
     let dates: [Date]
     let timeSlots: [TimeSlot]

@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

@@ -1,6 +1,6 @@
 //
 //  UpcomingMoviesDetailsViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -144,29 +144,29 @@ class UpcomingMoviesDetailsViewController: UIViewController {
     }
 }
 
-    // MARK: - MovieDetailsViewModelDelegate
-    extension UpcomingMoviesDetailsViewController: MovieDetailsViewModelDelegate {
-        func movieDetailsFetched(_ movie: MovieDetails) {
-            Task {
-                movieLabel.text = movie.title
-                releaseLabel.text = "Release date: \(movie.releaseDate)"
+// MARK: - MovieDetailsViewModelDelegate
+extension UpcomingMoviesDetailsViewController: MovieDetailsViewModelDelegate {
+    func movieDetailsFetched(_ movie: MovieDetails) {
+        Task {
+            movieLabel.text = movie.title
+            releaseLabel.text = "Release date: \(movie.releaseDate)"
 
-                descriptionLabel.text = movie.overview
-            }
-        }
-
-        func showError(_ error: Error) {
-            print("Error")
-        }
-
-        func movieDetailsImageFetched(_ image: UIImage) {
-            Task {
-                movieImageView.image = image
-            }
-        }
-
-        func timeSlotsFetched(_ timeSlots: [TimeSlot]) {
-            DispatchQueue.main.async {
-            }
+            descriptionLabel.text = movie.overview
         }
     }
+
+    func showError(_ error: Error) {
+        print("Error")
+    }
+
+    func movieDetailsImageFetched(_ image: UIImage) {
+        Task {
+            movieImageView.image = image
+        }
+    }
+
+    func timeSlotsFetched(_ timeSlots: [TimeSlot]) {
+        DispatchQueue.main.async {
+        }
+    }
+}

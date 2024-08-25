@@ -1,6 +1,6 @@
 //
 //  CoreDataManager.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -20,7 +20,6 @@ class CoreDataManager {
 
     private init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
         self.persistentContainer = appDelegate.persistentContainer
     }
 

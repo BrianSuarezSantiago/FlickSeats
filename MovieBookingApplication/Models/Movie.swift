@@ -1,6 +1,6 @@
 //
 //  Movie.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -38,7 +38,6 @@ struct Movie: Decodable {
         self.genres = genreIds.map { id in
             Genre(name: GenreName.from(id: id))
         }
-
         self.showtimes = [:]
     }
 

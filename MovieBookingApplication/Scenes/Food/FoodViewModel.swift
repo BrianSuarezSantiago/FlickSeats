@@ -1,6 +1,6 @@
 //
 //  FoodItemViewModel.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -41,12 +41,12 @@ final class FoodViewModel {
     }
 
     func totalSelectedItems() -> Int {
-            var total = 0
-            for section in foodManager.filteredFoodSections {
-                for size in section.sizes {
-                    total += foodManager.quantity(for: section.food, size: size)
-                }
+        var total = 0
+        for section in foodManager.filteredFoodSections {
+            for size in section.sizes {
+                total += foodManager.quantity(for: section.food, size: size)
             }
-            return total
         }
+        return total
+    }
 }

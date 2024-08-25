@@ -1,6 +1,6 @@
 //
 //  OrderViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -8,6 +8,7 @@
 import UIKit
 
 final class OrderViewController: UIViewController, UITableViewDelegate {
+
     // MARK: - Properties
     private let viewModel: OrderViewModel
 
@@ -226,7 +227,6 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
             self.posterImageView.image = UIImage(named: "placeholder")
             return
         }
-
         if let posterPath = movie.posterPath {
             NetworkManager.shared.downloadImage(from: posterPath) { [weak self] image in
                 DispatchQueue.main.async {

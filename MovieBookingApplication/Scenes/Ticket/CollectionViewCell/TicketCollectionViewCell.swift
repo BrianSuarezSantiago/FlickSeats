@@ -1,6 +1,6 @@
 //
 //  TicketCollectionViewCell.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -162,7 +162,6 @@ class TicketCollectionViewCell: UICollectionViewCell {
         if let seats = ticket.seats?.split(separator: ",").first {
             rowLabel.text = "Row: \(seats.prefix(1))"
         }
-
         snacksLabel.text = "Snacks: \(ticket.snacks ?? "")"
         totalPriceLabel.text = String(format: "$%.2f", ticket.totalPrice)
 

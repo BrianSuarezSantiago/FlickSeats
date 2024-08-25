@@ -1,6 +1,6 @@
 //
 //  PrimaryButton.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -33,13 +33,13 @@ class ReusableButton: UIButton {
         }
 
         switch fontSize {
-        case .small:
-            self.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        case .medium:
-            self.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        case .big:
-            self.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
-        }
+            case .small:
+                self.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+            case .medium:
+                self.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+            case .big:
+                self.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
+            }
     }
 
     // MARK: - Required Initializer

@@ -1,6 +1,6 @@
 //
 //  TicketViewModel.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -86,7 +86,6 @@ class TicketViewModel {
             completion(UIImage(named: "placeholder"))
             return
         }
-
         NetworkManager.shared.downloadImage(from: posterPath) { image in
             DispatchQueue.main.async {
                 completion(image ?? UIImage(named: "placeholder"))

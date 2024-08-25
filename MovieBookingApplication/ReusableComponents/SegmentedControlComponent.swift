@@ -1,6 +1,6 @@
 //
 //  SegmentedControlComponent.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -35,10 +35,12 @@ class SegmentedControlComponent: UIView {
             .foregroundColor: UIColor.white.withAlphaComponent(0.8),
             .font: UIFont.systemFont(ofSize: 14)
         ]
+
         let selectedTextAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.white,
             .font: UIFont.boldSystemFont(ofSize: 14)
         ]
+
         control.setTitleTextAttributes(normalTextAttributes, for: .normal)
         control.setTitleTextAttributes(selectedTextAttributes, for: .selected)
 

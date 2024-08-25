@@ -1,6 +1,6 @@
 //
 //  SuccessViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -92,7 +92,6 @@ final class SuccessViewController: UIViewController {
             goToTicketsButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             goToTicketsButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-
         goToTicketsButton.addTarget(self, action: #selector(goToTicketsTapped), for: .touchUpInside)
     }
 

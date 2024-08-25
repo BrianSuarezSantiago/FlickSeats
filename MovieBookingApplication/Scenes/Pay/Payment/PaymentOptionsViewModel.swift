@@ -1,8 +1,9 @@
 //
 //  PaymentOptionsViewModel.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
+//
 
 import Foundation
 
@@ -38,7 +39,6 @@ final class PaymentOptionsViewModel {
             delegate?.didProcessPayment(success: false, message: "Please select a payment method")
             return
         }
-
         let amount = BookingManager.shared.totalPrice
         PaymentManager.shared.processPayment(amount: amount, card: selectedCard) { [weak self] success, message in
             if success {

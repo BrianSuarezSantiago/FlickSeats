@@ -1,6 +1,6 @@
 //
 //  AddNewCardViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -12,6 +12,7 @@ protocol AddNewCardViewControllerDelegate: AnyObject {
 }
 
 final class AddNewCardViewController: UIViewController {
+
     // MARK: - Properties
     weak var delegate: AddNewCardViewControllerDelegate?
     private let mainStackView: UIStackView = {
@@ -166,7 +167,6 @@ final class AddNewCardViewController: UIViewController {
               let cvc = cvcTextField.text else {
             return
         }
-
         let card = Card(id: UUID().uuidString,
                         cardholderName: name,
                         cardNumber: cardNumber,

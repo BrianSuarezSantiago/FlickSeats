@@ -1,8 +1,9 @@
 //
 //  PaymentOptionsViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
+//
 
 import UIKit
 
@@ -113,7 +114,6 @@ final class PaymentOptionsViewController: UIViewController {
             cardOptionViews.append(cardOptionView)
             stackView.insertArrangedSubview(cardOptionView, at: index + 1)
         }
-
         updateSelectedCard()
     }
 

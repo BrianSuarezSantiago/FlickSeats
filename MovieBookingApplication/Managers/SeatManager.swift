@@ -1,6 +1,6 @@
 //
 //  SeatManager.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -55,6 +55,6 @@ final class SeatManager {
     }
 
     func getSelectedSeats() -> [Seat] {
-           return seats.flatMap { $0.filter { $0.selected } }
+        return seats.flatMap { $0.filter { $0.selected } }
     }
 }

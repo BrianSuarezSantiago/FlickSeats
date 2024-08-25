@@ -1,6 +1,6 @@
 //
 //  Ticket+CoreDataProperties.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //

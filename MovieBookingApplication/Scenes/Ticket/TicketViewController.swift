@@ -1,6 +1,6 @@
 //
 //  TicketViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -28,6 +28,7 @@ final class TicketViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         return collectionView
     }()
 
@@ -40,7 +41,6 @@ final class TicketViewController: UIViewController {
         BookingManager.shared.ticketViewController = self
         viewModel.loadTickets()
         updateViewState()
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +78,6 @@ final class TicketViewController: UIViewController {
 
     private func setupBackground() {
         view.backgroundColor = .customBackgroundColor
-        
     }
 
     private func setupSubviews(){
@@ -162,10 +161,10 @@ extension TicketViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TicketCell", for: indexPath) as? TicketCollectionViewCell else {
             fatalError("Unable to dequeue TicketCollectionViewCell")
         }
-
         let ticket = viewModel.filteredTickets[indexPath.item]
         print("Configuring cell for ticket: \(ticket.movieTitle ?? "Unknown"), Poster Path: \(ticket.posterPath ?? "None")")
         cell.configure(with: ticket)
+
         return cell
     }
 }

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  MovieBookingApplication
+//  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.
 //
@@ -189,7 +189,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let height = 278
         
         return CGSize(width: width, height: height)
-        
     }
 }
 
