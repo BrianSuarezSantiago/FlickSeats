@@ -236,7 +236,7 @@
 		9883B9FA2C414FB6009D8996 = {
 			isa = PBXGroup;
 			children = (
-				9883BA052C414FB6009D8996 /* MovieBookingApplication */,
+				9883BA052C414FB6009D8996 /* FlickSeats */,
 				9883BA042C414FB6009D8996 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9883BA052C414FB6009D8996 /* MovieBookingApplication */ = {
+		9883BA052C414FB6009D8996 /* FlickSeats */ = {
 			isa = PBXGroup;
 			children = (
 				9883BA1D2C4165F9009D8996 /* App */,
@@ -265,7 +265,7 @@
 				9883BA112C414FB8009D8996 /* LaunchScreen.storyboard */,
 				9883BA142C414FB8009D8996 /* Info.plist */,
 			);
-			path = MovieBookingApplication;
+			path = FlickSeats;
 			sourceTree = "<group>";
 		};
 		9883BA1A2C415286009D8996 /* Extensions */ = {
@@ -484,7 +484,7 @@
 				98D323B12C4D2B8C008DF8CF /* Lottie */,
 				98007CB42C566577009B5A1C /* Lottie */,
 			);
-			productName = MovieBookingApplication;
+			productName = FlickSeats;
 			productReference = 9883BA032C414FB6009D8996 /* FlickSeats.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -749,7 +749,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6YYNTH585K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieBookingApplication/Info.plist;
+				INFOPLIST_FILE = FlickSeats/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -760,7 +760,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ge.academy.objectDetection.MovieBookingApplication;
+				PRODUCT_BUNDLE_IDENTIFIER = ge.academy.objectDetection.FlickSeats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -777,7 +777,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6YYNTH585K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieBookingApplication/Info.plist;
+				INFOPLIST_FILE = FlickSeats/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -788,7 +788,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ge.academy.objectDetection.MovieBookingApplication;
+				PRODUCT_BUNDLE_IDENTIFIER = ge.academy.objectDetection.FlickSeats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
