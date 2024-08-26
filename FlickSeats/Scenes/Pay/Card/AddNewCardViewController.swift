@@ -20,6 +20,7 @@ final class AddNewCardViewController: UIViewController {
         view.axis = .vertical
         view.spacing = 24
         view.translatesAutoresizingMaskIntoConstraints = false
+
         return view
     }()
 
@@ -29,6 +30,7 @@ final class AddNewCardViewController: UIViewController {
         label.textColor = .white
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+
         return label
     }()
 
@@ -36,6 +38,7 @@ final class AddNewCardViewController: UIViewController {
         let textField = CustomTextField()
         textField.configure(placeholder: "Name on card", keyboardType: .alphabet, icon: UIImage(systemName: "person"))
         textField.tag = TextFieldType.name.rawValue
+
         return textField
     }()
 
@@ -43,6 +46,7 @@ final class AddNewCardViewController: UIViewController {
         let textField = CustomTextField()
         textField.configure(placeholder: "0000 0000 0000 0000", keyboardType: .numberPad, icon: UIImage(systemName: "creditcard"))
         textField.tag = TextFieldType.cardNumber.rawValue
+
         return textField
     }()
 
@@ -50,6 +54,7 @@ final class AddNewCardViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [expiryDateTextField, cvcTextField])
         stackView.distribution = .fillEqually
         stackView.spacing = 16
+
         return stackView
     }()
 
@@ -57,6 +62,7 @@ final class AddNewCardViewController: UIViewController {
         let textField = CustomTextField()
         textField.configure(placeholder: "MM/YY", keyboardType: .numberPad, icon: UIImage(systemName: "calendar"))
         textField.tag = TextFieldType.expiryDate.rawValue
+
         return textField
     }()
 
@@ -64,12 +70,14 @@ final class AddNewCardViewController: UIViewController {
         let textField = CustomTextField()
         textField.configure(placeholder: "CVC", keyboardType: .numberPad, icon: UIImage(systemName: "creditcard.and.123"))
         textField.tag = TextFieldType.cvc.rawValue
+
         return textField
     }()
 
     private let addCardButton: ReusableButton = {
         let button = ReusableButton(title: "Add card", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 
@@ -196,52 +204,52 @@ enum TextFieldType: Int {
 extension AddNewCardViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch TextFieldType(rawValue: textField.tag) {
-        case .name:
-            let allowedCharacters = CharacterSet.letters.union(.whitespaces)
-            let characterSet = CharacterSet(charactersIn: string)
-            return allowedCharacters.isSuperset(of: characterSet)
+            case .name:
+                let allowedCharacters = CharacterSet.letters.union(.whitespaces)
+                let characterSet = CharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet)
 
-        case .cardNumber:
-            let currentText = textField.text ?? ""
-            let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            let numericText = replacementText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-            let maxLength = 16
-            if numericText.count > maxLength { return false }
-            var formattedText = ""
-            for (index, character) in numericText.enumerated() {
-                if index % 4 == 0 && index > 0 { formattedText += " " }
-                formattedText.append(character)
-            }
-            textField.text = formattedText
-            return false
+            case .cardNumber:
+                let currentText = textField.text ?? ""
+                let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
+                let numericText = replacementText.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                let maxLength = 16
+                if numericText.count > maxLength { return false }
+                var formattedText = ""
+                for (index, character) in numericText.enumerated() {
+                    if index % 4 == 0 && index > 0 { formattedText += " " }
+                    formattedText.append(character)
+                }
+                textField.text = formattedText
+                return false
 
-        case .expiryDate:
-            let fullText = (textField.text ?? "") as NSString
-            let updatedText = fullText.replacingCharacters(in: range, with: string)
-            guard string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil, updatedText.count <= 5 else { return false }
-            var newText = updatedText.replacingOccurrences(of: "/", with: "")
-            if newText.count > 2 { newText = String(newText.prefix(2)) + "/" + newText.dropFirst(2) }
-            if newText.count >= 5 {
-                let yearString = String(newText.suffix(2))
-                let currentYear = Calendar.current.component(.year, from: Date()) % 100
-                if let year = Int(yearString), year < currentYear { return false }
-            }
-            if newText.count >= 2 {
-                let monthString = String(newText.prefix(2))
-                if let month = Int(monthString), month < 1 || month > 12 { return false }
-            }
-            textField.text = newText
-            return false
+            case .expiryDate:
+                let fullText = (textField.text ?? "") as NSString
+                let updatedText = fullText.replacingCharacters(in: range, with: string)
+                guard string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil, updatedText.count <= 5 else { return false }
+                var newText = updatedText.replacingOccurrences(of: "/", with: "")
+                if newText.count > 2 { newText = String(newText.prefix(2)) + "/" + newText.dropFirst(2) }
+                if newText.count >= 5 {
+                    let yearString = String(newText.suffix(2))
+                    let currentYear = Calendar.current.component(.year, from: Date()) % 100
+                    if let year = Int(yearString), year < currentYear { return false }
+                }
+                if newText.count >= 2 {
+                    let monthString = String(newText.prefix(2))
+                    if let month = Int(monthString), month < 1 || month > 12 { return false }
+                }
+                textField.text = newText
+                return false
 
-        case .cvc:
-            let allowedCharacters = CharacterSet.decimalDigits
-            let characterSet = CharacterSet(charactersIn: string)
-            let maxLength = 3
-            let currentText = textField.text ?? ""
-            return allowedCharacters.isSuperset(of: characterSet) && currentText.count + string.count <= maxLength
+            case .cvc:
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = CharacterSet(charactersIn: string)
+                let maxLength = 3
+                let currentText = textField.text ?? ""
+                return allowedCharacters.isSuperset(of: characterSet) && currentText.count + string.count <= maxLength
 
-        case .none:
-            return true
+            case .none:
+                return true
         }
     }
 }

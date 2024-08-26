@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class SeatCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attributes = super.layoutAttributesForElements(in: rect)
 

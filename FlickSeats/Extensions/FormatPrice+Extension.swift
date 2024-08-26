@@ -1,5 +1,5 @@
 //
-//  formatPrice+Extension.swift
+//  FormatPrice+Extension.swift
 //  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.

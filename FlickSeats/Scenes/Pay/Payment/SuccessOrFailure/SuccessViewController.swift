@@ -15,6 +15,7 @@ final class SuccessViewController: UIViewController {
         imageView.tintColor = .systemGreen
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 
@@ -25,6 +26,7 @@ final class SuccessViewController: UIViewController {
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -36,6 +38,7 @@ final class SuccessViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -46,6 +49,7 @@ final class SuccessViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 

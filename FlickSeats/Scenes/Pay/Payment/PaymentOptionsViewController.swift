@@ -16,6 +16,7 @@ final class PaymentOptionsViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -24,16 +25,19 @@ final class PaymentOptionsViewController: UIViewController {
         label.text = "Payment method"
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .white
+
         return label
     }()
 
     private let applePayOption: PaymentOptionView = {
         let view = PaymentOptionView(icon: UIImage(named: "apple_pay_icon"), title: "Apple Pay", subtitle: nil)
+
         return view
     }()
 
     private let googlePayOption: PaymentOptionView = {
         let view = PaymentOptionView(icon: UIImage(named: "google_pay_icon"), title: "Google Pay", subtitle: nil)
+
         return view
     }()
 
@@ -42,12 +46,14 @@ final class PaymentOptionsViewController: UIViewController {
         button.setTitle("Add new card", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.contentHorizontalAlignment = .left
+
         return button
     }()
 
     private let payButton: ReusableButton = {
         let button = ReusableButton(title: "Pay", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 

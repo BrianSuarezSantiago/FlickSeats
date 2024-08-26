@@ -15,6 +15,7 @@ final class FailureViewController: UIViewController {
         imageView.tintColor = .systemRed
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 
@@ -25,6 +26,7 @@ final class FailureViewController: UIViewController {
         label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -36,6 +38,7 @@ final class FailureViewController: UIViewController {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -46,6 +49,7 @@ final class FailureViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
  
@@ -92,7 +96,6 @@ final class FailureViewController: UIViewController {
             backToCheckoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             backToCheckoutButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-
         backToCheckoutButton.addTarget(self, action: #selector(backToCheckoutTapped), for: .touchUpInside)
     }
 

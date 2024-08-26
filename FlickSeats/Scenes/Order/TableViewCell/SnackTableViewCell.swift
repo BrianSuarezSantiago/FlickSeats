@@ -15,6 +15,7 @@ class SnackTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -23,6 +24,7 @@ class SnackTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -31,6 +33,7 @@ class SnackTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 

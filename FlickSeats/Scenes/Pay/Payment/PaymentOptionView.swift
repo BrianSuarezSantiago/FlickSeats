@@ -14,6 +14,7 @@ final class PaymentOptionView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 
@@ -21,6 +22,7 @@ final class PaymentOptionView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
+
         return label
     }()
 
@@ -28,6 +30,7 @@ final class PaymentOptionView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
+
         return label
     }()
 
@@ -36,6 +39,7 @@ final class PaymentOptionView: UIView {
         imageView.tintColor = .systemBlue
         imageView.isHidden = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 

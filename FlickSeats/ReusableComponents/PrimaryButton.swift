@@ -35,11 +35,13 @@ class ReusableButton: UIButton {
         switch fontSize {
             case .small:
                 self.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+
             case .medium:
                 self.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
+
             case .big:
                 self.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
-            }
+        }
     }
 
     // MARK: - Required Initializer

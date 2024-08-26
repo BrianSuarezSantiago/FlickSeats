@@ -8,7 +8,6 @@
 import Foundation
 
 final class FoodViewModel {
-
     // MARK: - Properties
     private let foodManager = FoodManager.shared
 

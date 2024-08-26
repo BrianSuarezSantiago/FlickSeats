@@ -14,6 +14,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .orange
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -22,6 +23,7 @@ class MovieShowtimeCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
     
@@ -30,6 +32,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -38,6 +41,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -46,6 +50,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -54,6 +59,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -66,6 +72,7 @@ class MovieShowtimeCell: UITableViewCell {
         label.layer.cornerRadius = 4
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     

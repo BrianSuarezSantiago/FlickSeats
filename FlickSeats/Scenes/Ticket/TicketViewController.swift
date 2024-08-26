@@ -9,7 +9,6 @@ import UIKit
 import Lottie
 
 final class TicketViewController: UIViewController {
-
     // MARK: - Properties
     private let bookingManager = BookingManager.shared
     private let viewModel = TicketViewModel()
@@ -71,8 +70,8 @@ final class TicketViewController: UIViewController {
     private func setupSegmentedControl() {
         segmentedControl.segmentTitles = ["Upcoming", "Expired"]
         segmentedControl.onSegmentChanged = { [weak self] selectedIndex in
-            self?.viewModel.filterTickets(by: selectedIndex == 0 ? .upcoming : .expired)
-            self?.updateViewState()
+        self?.viewModel.filterTickets(by: selectedIndex == 0 ? .upcoming : .expired)
+        self?.updateViewState()
         }
     }
 

@@ -25,41 +25,42 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
     private let networkManager: NetworkManager
   //  private let showtimeManager = MovieShowtimeManager.shared
     weak var delegate: MovieDetailsViewModelDelegate?
-    
+
     init(movieId: Int, networkManager: NetworkManager = NetworkManager.shared) {
             self.movieId = movieId
             self.networkManager = networkManager
         }
+
     func viewDidLoad() {
         fetchMovieDetails()
     }
-    
 
     private func fetchMovieDetails() {
-            Task {
-                do {
-                    let movies = try await networkManager.fetchFromMockAPI()
-                    if let movie = movies.first(where: { $0.id == movieId }) {
-                        await MainActor.run {
-                            self.delegate?.movieDetailsFetched(movie)
-                        }
-                        downloadImage(from: movie.posterPath ?? "")
-                    } else {
-                        throw NSError(domain: "", code: -3, userInfo: [NSLocalizedDescriptionKey: "Movie not found"])
-                    }
-                } catch let error {
+        Task {
+            do {
+                let movies = try await networkManager.fetchFromMockAPI()
+                if let movie = movies.first(where: { $0.id == movieId }) {
                     await MainActor.run {
-                        self.delegate?.showError(error)
+                        self.delegate?.movieDetailsFetched(movie)
                     }
+                    downloadImage(from: movie.posterPath ?? "")
+                } else {
+                    throw NSError(domain: "", code: -3, userInfo: [NSLocalizedDescriptionKey: "Movie not found"])
+                }
+            } catch let error {
+                await MainActor.run {
+                    self.delegate?.showError(error)
                 }
             }
         }
+    }
+
     private func downloadImage(from url: String) {
         NetworkManager.shared.downloadImage(from: url) { [weak self] image in
             self?.delegate?.movieDetailsImageFetched(image ?? UIImage())
         }
     }
-    
+
     func fetchTimeSlots(for date: Date) {
         Task {
             do {

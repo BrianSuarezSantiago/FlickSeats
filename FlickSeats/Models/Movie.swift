@@ -73,14 +73,15 @@ enum GenreName: Int, CaseIterable {
    
     var description: String {
         switch self {
-        case .action: return "Action"
-        case .adventure: return "Adventure"
-        case .animation: return "Animation"
-        case .comedy: return "Comedy"
-        case .drama: return "Drama"
+            case .action: return "Action"
+            case .adventure: return "Adventure"
+            case .animation: return "Animation"
+            case .comedy: return "Comedy"
+            case .drama: return "Drama"
         }
     }
 }
+
 struct MovieShowtime {
     let time: String
     let movie: MockMovie

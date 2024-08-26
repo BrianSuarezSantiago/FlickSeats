@@ -12,7 +12,6 @@ protocol DateCollectionViewCellDelegate: AnyObject {
 }
 
 final class DateCollectionViewCell: UICollectionViewCell {
-
     // MARK: - Properties
     private let calendar = Calendar.current
     weak var delegate: DateCollectionViewCellDelegate?
@@ -24,6 +23,7 @@ final class DateCollectionViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 2
         view.layer.masksToBounds = true
+
         return view
     }()
 
@@ -34,6 +34,7 @@ final class DateCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
+
         return label
     }()
 

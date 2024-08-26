@@ -17,6 +17,7 @@ final class FoodViewController: UIViewController, UITableViewDelegate {
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.isLayoutMarginsRelativeArrangement = true
+
         return stackView
     }()
 
@@ -28,12 +29,14 @@ final class FoodViewController: UIViewController, UITableViewDelegate {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.register(FoodItemCell.self, forCellReuseIdentifier: "FoodItemCell")
+
         return tableView
     }()
 
     private let chooseSnacksButton: ReusableButton = {
         let button = ReusableButton(title: "Choose snacks", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 
@@ -47,6 +50,7 @@ final class FoodViewController: UIViewController, UITableViewDelegate {
         label.clipsToBounds = true
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -82,8 +86,8 @@ final class FoodViewController: UIViewController, UITableViewDelegate {
         segmentedControl.segmentTitles = ["Drinks", "Popcorn", "Food"]
         segmentedControl.onSegmentChanged = { [weak self] selectedIndex in
 
-            self?.viewModel.filterFoodItems(for: selectedIndex)
-            self?.tableView.reloadData()
+        self?.viewModel.filterFoodItems(for: selectedIndex)
+        self?.tableView.reloadData()
         }
     }
 

@@ -55,7 +55,7 @@
 		9886BC6B2C511597000A95BC /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9886BC6A2C511597000A95BC /* OrderViewModel.swift */; };
 		9886BC6D2C511861000A95BC /* SeatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9886BC6C2C511861000A95BC /* SeatTableViewCell.swift */; };
 		9886BC6F2C511877000A95BC /* SnackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9886BC6E2C511877000A95BC /* SnackTableViewCell.swift */; };
-		988DC1112C4AA859005EE898 /* formatPrice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988DC1102C4AA859005EE898 /* formatPrice+Extension.swift */; };
+		988DC1112C4AA859005EE898 /* FormatPrice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988DC1102C4AA859005EE898 /* FormatPrice+Extension.swift */; };
 		988DC1132C4AB507005EE898 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988DC1122C4AB507005EE898 /* AlertManager.swift */; };
 		988DC1152C4BF4C8005EE898 /* ArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988DC1142C4BF4C8005EE898 /* ArcView.swift */; };
 		988DC1192C4C14D2005EE898 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988DC1182C4C14D2005EE898 /* Food.swift */; };
@@ -130,7 +130,7 @@
 		9886BC6A2C511597000A95BC /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		9886BC6C2C511861000A95BC /* SeatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatTableViewCell.swift; sourceTree = "<group>"; };
 		9886BC6E2C511877000A95BC /* SnackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackTableViewCell.swift; sourceTree = "<group>"; };
-		988DC1102C4AA859005EE898 /* formatPrice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "formatPrice+Extension.swift"; sourceTree = "<group>"; };
+		988DC1102C4AA859005EE898 /* FormatPrice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormatPrice+Extension.swift"; sourceTree = "<group>"; };
 		988DC1122C4AB507005EE898 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		988DC1142C4BF4C8005EE898 /* ArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcView.swift; sourceTree = "<group>"; };
 		988DC1182C4C14D2005EE898 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 			children = (
 				9883BA1B2C4152C8009D8996 /* Color+Extension.swift */,
 				980849D62C45505600F5924B /* DateFormatter+Extension.swift */,
-				988DC1102C4AA859005EE898 /* formatPrice+Extension.swift */,
+				988DC1102C4AA859005EE898 /* FormatPrice+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -583,7 +583,7 @@
 				980E2A5C2C5E655D00D04800 /* SegmentedControlComponent.swift in Sources */,
 				980E2A502C5CF1BA00D04800 /* Ticket+CoreDataClass.swift in Sources */,
 				9883BA282C416CC5009D8996 /* NowInCinemasCollectionViewCell.swift in Sources */,
-				988DC1112C4AA859005EE898 /* formatPrice+Extension.swift in Sources */,
+				988DC1112C4AA859005EE898 /* FormatPrice+Extension.swift in Sources */,
 				988DC1152C4BF4C8005EE898 /* ArcView.swift in Sources */,
 				D393D8F52C7C9AA800B29470 /* CalendarViewController.swift in Sources */,
 				987C6E232C44470E00816B14 /* MovieShowtimeManager.swift in Sources */,

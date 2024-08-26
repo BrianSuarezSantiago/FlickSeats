@@ -9,7 +9,6 @@ import SwiftUI
 import Lottie
 
 struct FoodSelectionSheet: View {
-
     @Environment(\.presentationMode) var presentationMode
     let animationName = "popCorn"
     var presentingViewController: UIViewController?

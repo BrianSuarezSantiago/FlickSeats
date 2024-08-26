@@ -13,6 +13,7 @@ final class SeatCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 

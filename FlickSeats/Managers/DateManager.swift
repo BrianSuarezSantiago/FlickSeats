@@ -28,12 +28,14 @@ final class DateManager {
     func formatDate(_ date: Date, format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
+
         return formatter.string(from: date)
     }
 
     func shortWeekday(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEE"
+
         return formatter.string(from: date)
     }
 
@@ -44,7 +46,7 @@ final class DateManager {
     func formatTime(_ time: String) -> String? {
         let formatter = DateFormatter()
         formatter.dateFormat = "HHmm"
-        
+
         if let date = formatter.date(from: time) {
             formatter.dateFormat = "HH:mm"
             return formatter.string(from: date)

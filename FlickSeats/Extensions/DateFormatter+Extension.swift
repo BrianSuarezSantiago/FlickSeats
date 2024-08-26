@@ -8,15 +8,17 @@
 import Foundation
 
 extension DateFormatter {
-  static func shortWeekday(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "E"
-    return formatter.string(from: date)
-  }
+    static func shortWeekday(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
 
-  static func formattedDate(date: Date, format: String) -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = format
-    return formatter.string(from: date)
-  }
+        return formatter.string(from: date)
+    }
+
+    static func formattedDate(date: Date, format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+
+        return formatter.string(from: date)
+    }
 }

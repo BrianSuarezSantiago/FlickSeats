@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class TicketCollectionViewCell: UICollectionViewCell {
+
     private let ticketView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
@@ -18,6 +19,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         view.layer.shadowOpacity = 0.2
         view.layer.shadowRadius = 4
         view.translatesAutoresizingMaskIntoConstraints = false
+
         return view
     }()
 
@@ -28,6 +30,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.layoutMargins = UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -36,6 +39,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
+
         return imageView
     }()
 
@@ -44,6 +48,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
         label.numberOfLines = 0
+
         return label
     }()
 
@@ -51,6 +56,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .darkGray
+
         return label
     }()
 
@@ -58,6 +64,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .darkGray
+
         return label
     }()
 
@@ -66,6 +73,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -73,6 +81,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
+
         return label
     }()
 
@@ -80,12 +89,14 @@ class TicketCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
+
         return label
     }()
 
     private let barcodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+
         return imageView
     }()
 
@@ -94,6 +105,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
         label.numberOfLines = 0
+
         return label
     }()
 
@@ -102,6 +114,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -110,6 +123,7 @@ class TicketCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .black
         label.textAlignment = .right
+
         return label
     }()
 

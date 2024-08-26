@@ -10,7 +10,6 @@ import UIKit
 import Lottie
 
 class EmptyStateViewController: UIViewController {
-
     // MARK: - Properties
     private var animationView: LottieAnimationView!
 
@@ -20,6 +19,7 @@ class EmptyStateViewController: UIViewController {
         stackView.alignment = .center
         stackView.spacing = 24
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -27,6 +27,7 @@ class EmptyStateViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textColor = .white
+
         return label
     }()
 
@@ -34,6 +35,7 @@ class EmptyStateViewController: UIViewController {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 8
         style.alignment = .center
+
         return style
     }()
 
@@ -50,6 +52,7 @@ class EmptyStateViewController: UIViewController {
             range: NSMakeRange(0, attributedText.length)
         )
         label.attributedText = attributedText
+
         return label
     }()
 

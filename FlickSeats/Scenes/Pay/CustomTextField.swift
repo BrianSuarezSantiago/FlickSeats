@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class CustomTextField: UITextField {
-
     // MARK: - Properties
     private let paddingWidth: CGFloat = 44
 
@@ -17,6 +16,7 @@ final class CustomTextField: UITextField {
         let imageView = UIImageView()
         imageView.contentMode = .center
         imageView.tintColor = .white
+
         return imageView
     }()
 

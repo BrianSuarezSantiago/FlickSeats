@@ -13,7 +13,6 @@ protocol FoodCollectionViewCellDelegate: AnyObject {
 }
 
 final class FoodItemCell: UITableViewCell {
-
     // MARK: - Properties
     weak var delegate: FoodCollectionViewCellDelegate?
 
@@ -23,6 +22,7 @@ final class FoodItemCell: UITableViewCell {
         stackView.alignment = .top
         stackView.spacing = 25
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -31,6 +31,7 @@ final class FoodItemCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+
         return imageView
     }()
 
@@ -39,6 +40,7 @@ final class FoodItemCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -47,6 +49,7 @@ final class FoodItemCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -55,6 +58,7 @@ final class FoodItemCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
 
@@ -64,6 +68,7 @@ final class FoodItemCell: UITableViewCell {
         stackView.spacing = 4
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -72,6 +77,7 @@ final class FoodItemCell: UITableViewCell {
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+
         return label
     }()
 
@@ -84,6 +90,7 @@ final class FoodItemCell: UITableViewCell {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.backgroundColor = .customSecondaryColor
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 
@@ -94,6 +101,7 @@ final class FoodItemCell: UITableViewCell {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.backgroundColor = .customSecondaryColor
         button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }()
 
@@ -104,6 +112,7 @@ final class FoodItemCell: UITableViewCell {
         stackView.spacing = 4
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 
@@ -113,6 +122,7 @@ final class FoodItemCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
         return stackView
     }()
 

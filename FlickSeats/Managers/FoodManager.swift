@@ -22,20 +22,24 @@ final class FoodManager {
     // MARK: - Methods
     func filterFoodItems(for segmentIndex: Int) {
         switch segmentIndex {
-        case 0:
-            filteredFoodSections = allFoodItems.filter { $0.category == "Drinks" }.map { (food: $0, sizes: $0.sizes) }
-        case 1:
-            filteredFoodSections = allFoodItems.filter { $0.category == "Popcorn" }.map { (food: $0, sizes: $0.sizes) }
-        case 2:
-            filteredFoodSections = allFoodItems.filter { $0.category == "Food" }.map { (food: $0, sizes: $0.sizes) }
-        default:
-            filteredFoodSections = allFoodItems.map { (food: $0, sizes: $0.sizes) }
+            case 0:
+                filteredFoodSections = allFoodItems.filter { $0.category == "Drinks" }.map { (food: $0, sizes: $0.sizes) }
+
+            case 1:
+                filteredFoodSections = allFoodItems.filter { $0.category == "Popcorn" }.map { (food: $0, sizes: $0.sizes) }
+
+            case 2:
+                filteredFoodSections = allFoodItems.filter { $0.category == "Food" }.map { (food: $0, sizes: $0.sizes) }
+
+            default:
+                filteredFoodSections = allFoodItems.map { (food: $0, sizes: $0.sizes) }
         }
     }
 
     func updateFilteredSections() {
            let currentFilter = filteredFoodSections.first?.food.name.lowercased()
-           if currentFilter?.contains("cola") == true {
+
+            if currentFilter?.contains("cola") == true {
                filterFoodItems(for: 0)
            } else if currentFilter?.contains("popcorn") == true {
                filterFoodItems(for: 1)
@@ -44,7 +48,7 @@ final class FoodManager {
            } else {
                filterFoodItems(for: 3)
            }
-       }
+    }
 
     func increaseQuantity(for food: Food, size: FoodSize) {
         if let index = allFoodItems.firstIndex(where: { $0.id == food.id }) {

@@ -12,19 +12,20 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.backgroundColor = .customBackgroundColor
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().tintColor = .customAccentColor
-        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        return true
-    }
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            navigationBarAppearance.backgroundColor = .customBackgroundColor
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().tintColor = .customAccentColor
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 
-    // MARK: - Core Data stack
+            return true
+        }
+
+    // MARK: - Core Data Stack
      lazy var persistentContainer: NSPersistentContainer = {
          let container = NSPersistentContainer(name: "MovieBookingModel")
          container.loadPersistentStores { (storeDescription, error) in
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          return container
      }()
 
-     // MARK: - Core Data Saving support
+     // MARK: - Core Data Saving Support
      func saveContext () {
          let context = persistentContainer.viewContext
          if context.hasChanges {

@@ -24,16 +24,16 @@ class DefaultUpcomingMoviesDetailsViewModel: UpcomingMoviesDetailsViewModel {
     private let movieId: Int
     private let networkManager: NetworkManager
     weak var delegate: UpcomingMoviesDetailsViewModelDelegate?
-    
+
     init(movieId: Int, networkManager: NetworkManager = NetworkManager.shared) {
         self.movieId = movieId
         self.networkManager = networkManager
     }
-    
+
     func viewDidLoad() {
         fetchMovieDetails()
     }
-    
+
     func fetchMovieDetails() {
         Task {
             do {
@@ -55,7 +55,7 @@ class DefaultUpcomingMoviesDetailsViewModel: UpcomingMoviesDetailsViewModel {
             }
         }
     }
-    
+
     private func downloadImage(from url: String) {
         networkManager.downloadImage(from: url) { [weak self] image in
             DispatchQueue.main.async {

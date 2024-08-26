@@ -33,10 +33,11 @@ class TicketViewModel {
 
     func filterTickets(by filter: TicketFilter) {
         switch filter {
-        case .upcoming:
-            filteredTickets = tickets.filter { $0.date! >= Date() }
-        case .expired:
-            filteredTickets = tickets.filter { $0.date! < Date() }
+            case .upcoming:
+                filteredTickets = tickets.filter { $0.date! >= Date() }
+
+            case .expired:
+                filteredTickets = tickets.filter { $0.date! < Date() }
         }
     }
 
