@@ -7,42 +7,60 @@
 
 import Foundation
 
-struct MoviesResponse: Decodable {
-    let results: [Movie]
+struct MovieResponse: Decodable {
+    let page: Int
+    let results: [MockMovie]
 }
 
-struct Movie: Decodable {
+struct MockMovie: Decodable {
+    let adult: Bool
+    let backdropPath: String?
+    let genreIds: [Int]
     let id: Int
-    let title: String
+    let originalLanguage: String
+    let originalTitle: String
+    let overview: String
+    let popularity: Double
     let posterPath: String?
+    let releaseDate: String
+    let title: String
+    let video: Bool
     let voteAverage: Double
-    let genres: [Genre]
-    var showtimes: [String: [TimeSlot]] = [:]
-
+    let voteCount: Int
+    let availableCinemas: [Cinema]
+    
     enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case posterPath = "poster_path"
-        case voteAverage = "vote_average"
+        case adult
+        case backdropPath = "backdrop_path"
         case genreIds = "genre_ids"
+        case id
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case overview
+        case popularity
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case title
+        case video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+        case availableCinemas = "available_cinemas"
     }
 
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.posterPath = try container.decode(String.self, forKey: .posterPath)
-        self.voteAverage = try container.decode(Double.self, forKey: .voteAverage)
-
-        let genreIds = try container.decode([Int].self, forKey: .genreIds)
-        self.genres = genreIds.map { id in
-            Genre(name: GenreName.from(id: id))
-        }
-        self.showtimes = [:]
+    var genres: [GenreName] {
+        genreIds.compactMap { GenreName(rawValue: $0) }
     }
+}
 
-    struct Genre: Decodable {
-        let name: String
+struct Cinema: Decodable {
+    let cinemaId: String
+    let cinemaName: String
+    let timeSlots: [MockTimeSlot]
+    
+    enum CodingKeys: String, CodingKey {
+        case cinemaId = "cinema_id"
+        case cinemaName = "cinema_name"
+        case timeSlots = "time_slots"
     }
 }
 
@@ -52,12 +70,21 @@ enum GenreName: Int, CaseIterable {
     case animation = 16
     case comedy = 35
     case drama = 18
-
-    static func from(id: Int) -> String {
-        if let genre = GenreName(rawValue: id) {
-            return "\(genre)".capitalized
-        } else {
-            return "Unknown"
+   
+    var description: String {
+        switch self {
+        case .action: return "Action"
+        case .adventure: return "Adventure"
+        case .animation: return "Animation"
+        case .comedy: return "Comedy"
+        case .drama: return "Drama"
         }
     }
+}
+struct MovieShowtime {
+    let time: String
+    let movie: MockMovie
+    let price: Double
+    let hall: Int
+    let ageRating: Int
 }

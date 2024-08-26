@@ -8,28 +8,34 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-
+    
     // MARK: - ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabs()
         setupUI()
     }
-
+    
     // MARK: - Setup
     private func setupTabs() {
         let home = createNavigationController(
             title: "Home", image: UIImage(systemName: "house"),
             viewController: HomeViewController()
         )
+        
+        let calendar = createNavigationController(
+            title: "Calendar", image: UIImage(systemName: "calendar"),
+            viewController: CalendarViewController()
+        )
+        
         let ticketViewController = TicketViewController()
         let ticket = createNavigationController(
             title: "Ticket", image: UIImage(systemName: "ticket"),
             viewController: ticketViewController
         )
-        setViewControllers([home, ticket], animated: true)
+        setViewControllers([home, calendar, ticket], animated: true)
     }
-
+    
     // MARK: - NavigationController
     private func createNavigationController(title: String, image: UIImage?, viewController: UIViewController) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -38,7 +44,7 @@ final class TabBarController: UITabBarController {
         viewController.title = title
         return navigationController
     }
-
+    
     // MARK: - Setup UI
     private func setupUI() {
         tabBar.tintColor = .customAccentColor
@@ -47,13 +53,13 @@ final class TabBarController: UITabBarController {
         tabBar.standardAppearance = createTabBarAppearance()
         tabBar.scrollEdgeAppearance = createTabBarScrollEdgeAppearance()
     }
-
+    
     private func createTabBarAppearance() -> UITabBarAppearance {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .customSecondaryColor
         return tabBarAppearance
     }
-
+    
     private func createTabBarScrollEdgeAppearance() -> UITabBarAppearance {
         let tabBarScrollEdgeAppearance = UITabBarAppearance()
         tabBarScrollEdgeAppearance.backgroundColor = .customSecondaryColor

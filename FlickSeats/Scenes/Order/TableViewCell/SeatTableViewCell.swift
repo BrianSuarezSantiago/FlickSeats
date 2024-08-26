@@ -8,8 +8,8 @@
 import UIKit
 
 class SeatTableViewCell: UITableViewCell {
-
     // MARK: - Properties
+    
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -17,7 +17,7 @@ class SeatTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     private let seatLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -25,7 +25,7 @@ class SeatTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -33,7 +33,7 @@ class SeatTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private lazy var seatPriceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seatLabel, priceLabel])
         stackView.axis = .horizontal
@@ -41,25 +41,27 @@ class SeatTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setupConstraints()
         configureAppearance()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Private Methods
+    
     private func addSubviews() {
         contentView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(seatPriceStackView)
     }
-
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -68,41 +70,28 @@ class SeatTableViewCell: UITableViewCell {
             mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
     }
-
+    
     private func configureAppearance() {
         layer.borderColor = UIColor.gray.withAlphaComponent(0.1).cgColor
         layer.borderWidth = 1.0
         layer.cornerRadius = 12
-
+        
         contentView.layer.cornerRadius = layer.cornerRadius
         contentView.layer.masksToBounds = true
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-
+        
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 6.0
         layer.shadowOpacity = 0.1
         layer.masksToBounds = false
     }
-
+    
     // MARK: - Public Methods
-    func configure(with seat: Seat, showTime: ShowTime, ticketPrices: [TicketPrice]) {
+    func configure(with seat: Seat, price: Double) {
         seatLabel.text = "Row \(seat.row), Seat \(seat.seatCode)"
-        if let price = ticketPrices.first(where: { $0.priceCategory == getPriceCategory(for: showTime) })?.price {
-            priceLabel.text = String(format: "$%.2f", price)
-        } else {
-            priceLabel.text = "Price: N/A"
-        }
+        priceLabel.text = String(format: "$%.2f", price)
     }
-
-     func getPriceCategory(for showTime: ShowTime) -> TicketPriceCategory {
-        switch showTime {
-        case .afternoon1: return .afternoon1
-        case .afternoon2: return .afternoon2
-        case .evening: return .evening
-        case .night1: return .night1
-        case .night2: return .night2
-        }
-    }
+    
 }

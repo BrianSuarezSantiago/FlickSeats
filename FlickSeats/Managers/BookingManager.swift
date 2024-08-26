@@ -9,17 +9,17 @@ import Foundation
 import UIKit
 
 final class BookingManager {
-
+    
     // MARK: - Shared Instance
     static let shared = BookingManager()
-
+    
     // MARK: - Private Init
     private init() {}
-
+    
     // MARK: - Properties
-    var selectedMovie: Movie?
+  
     var selectedDate: Date?
-    var selectedTimeSlot: TimeSlot?
+    var selectedTimeSlot: MockTimeSlot?
     var selectedFood: [Food] = []
     var totalPrice: Double = 0.0
     private let seatManager = SeatManager.shared
@@ -27,10 +27,10 @@ final class BookingManager {
     private(set) var numberOfTickets: Int = 0
     weak var ticketViewController: TicketViewController?
     weak var tabBarController: TabBarController?
-
+    var selectedMockMovie: MockMovie?
     // MARK: - Methods
     func resetBooking() {
-        selectedMovie = nil
+        selectedMockMovie = nil
         selectedDate = nil
         selectedTimeSlot = nil
         selectedFood.removeAll()
@@ -40,9 +40,9 @@ final class BookingManager {
         numberOfTickets = 0
         updateBadgeCounts()
     }
-
+    
     func calculateTotalPrice() {
-        let ticketPrice = Double(getSelectedSeats().count) * (selectedTimeSlot?.ticketPrices.first?.price ?? 0)
+        let ticketPrice = Double(getSelectedSeats().count) * (selectedTimeSlot?.price ?? 0)
         let foodPrice = foodManager.allFoodItems.reduce(0) { total, food in
             total + food.sizes.reduce(0) { sizeTotal, size in
                 sizeTotal + Double(food.quantityPerSize[size.name, default: 0]) * (food.price + size.priceModifier)
@@ -50,7 +50,7 @@ final class BookingManager {
         }
         totalPrice = ticketPrice + foodPrice
     }
-
+    
     func getSelectedOrderedFood() -> [OrderedFood] {
         return FoodManager.shared.allFoodItems.flatMap { food in
             food.sizes.compactMap { size in
@@ -59,38 +59,38 @@ final class BookingManager {
             }
         }
     }
-
+    
     func setSeats(for sections: Int, rowsPerSection: [Int]) {
         seatManager.setSeats(for: sections, rowsPerSection: rowsPerSection)
     }
-
+    
     func getSeat(by row: Int, seat: Int) -> Seat? {
         return seatManager.getSeat(by: row, seat: seat)
     }
-
+    
     func selectSeat(_ seat: Seat) {
         seatManager.selectSeat(seat)
     }
-
+    
     func deselectSeat(_ seat: Seat) {
         seatManager.deselectSeat(seat)
     }
-
+    
     func updateSeat(_ seat: Seat) {
         seatManager.updateSeat(seat)
     }
-
+    
     func getAllSeats() -> [[Seat]] {
         return seatManager.getAllSeats()
     }
-
+    
     func getSelectedSeats() -> [Seat] {
         return seatManager.getSelectedSeats()
     }
-
-    func getBookingSummary() -> (movie: Movie?, seats: [Seat], date: Date?, timeSlot: TimeSlot?) {
+    
+    func getBookingSummary() -> (movie: MockMovie?, seats: [Seat], date: Date?, timeSlot: MockTimeSlot?) {
         let selectedSeats = getSelectedSeats()
-        return (selectedMovie, selectedSeats, selectedDate, selectedTimeSlot)
+        return (selectedMockMovie, selectedSeats, selectedDate, selectedTimeSlot)
     }
 
     func completeBooking() {
@@ -103,7 +103,7 @@ final class BookingManager {
                 seats: seats,
                 snacks: getSelectedOrderedFood(),
                 totalPrice: totalPrice,
-                posterPath: movie.posterPath  
+                posterPath: movie.posterPath
             )
             print("Debug - Ticket created in Core Data")
         } else {
@@ -113,19 +113,19 @@ final class BookingManager {
         updateBadgeCounts()
         updateTicketViewController()
     }
-
     private func updateTicketViewController() {
         DispatchQueue.main.async { [weak self] in
             self?.ticketViewController?.updateViewState()
         }
     }
-
+    
     func cancelTicket() {
         numberOfTickets = max(0, numberOfTickets - 1)
         updateBadgeCounts()
     }
-
-    // MARK: - Update Badge Count    
+    
+    // MARK: - Update Badge Count
+    
     func updateBadgeCounts() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

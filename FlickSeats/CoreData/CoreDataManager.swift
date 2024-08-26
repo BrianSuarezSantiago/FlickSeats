@@ -9,17 +9,17 @@ import UIKit
 import CoreData
 
 class CoreDataManager {
-
     static let shared = CoreDataManager()
-
+    
     var persistentContainer: NSPersistentContainer
-
+    
+    
     var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
-
     private init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         self.persistentContainer = appDelegate.persistentContainer
     }
 
@@ -35,17 +35,20 @@ class CoreDataManager {
         }
     }
 
-    func createTicket(movieTitle: String, date: Date, timeSlot: TimeSlot, seats: [Seat], snacks: [OrderedFood], totalPrice: Double, posterPath: String?) {
+    func createTicket(movieTitle: String, date: Date, timeSlot: MockTimeSlot, seats: [Seat], snacks: [OrderedFood], totalPrice: Double, posterPath: String?) {
         let context = persistentContainer.viewContext
         let ticket = Ticket(context: context)
         ticket.movieTitle = movieTitle
         ticket.date = date
-        ticket.timeSlot = timeSlot.showTime.formattedTime
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        ticket.timeSlot = timeSlot.time
         ticket.seats = seats.map { $0.seatCode }.joined(separator: ", ")
         ticket.snacks = snacks.map { "\($0.quantity)x \($0.food.name) (\($0.size.name))" }.joined(separator: ", ")
         ticket.totalPrice = totalPrice
         ticket.posterPath = posterPath
-
+        
         do {
             try context.save()
             print("Debug - Ticket saved to Core Data: \(movieTitle)")
@@ -53,11 +56,10 @@ class CoreDataManager {
             print("Debug - Failed to save ticket: \(error)")
         }
     }
-
     func fetchTickets() -> [Ticket] {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Ticket> = Ticket.fetchRequest()
-
+        
         do {
             let tickets = try context.fetch(fetchRequest)
             print("Debug - Fetched \(tickets.count) tickets from Core Data")
@@ -67,11 +69,11 @@ class CoreDataManager {
             return []
         }
     }
-
+    
     func deleteTicket(_ ticket: Ticket) {
         let context = persistentContainer.viewContext
         context.delete(ticket)
-
+        
         do {
             try context.save()
             print("Debug - Ticket deleted from Core Data: \(ticket.movieTitle ?? "")")

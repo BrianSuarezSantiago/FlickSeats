@@ -74,6 +74,10 @@
 		98EEAF862C56BF05007D3C8F /* Tickets.json in Resources */ = {isa = PBXBuildFile; fileRef = 98EEAF852C56BF05007D3C8F /* Tickets.json */; };
 		98EEAF882C56C020007D3C8F /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EEAF872C56C020007D3C8F /* EmptyStateViewController.swift */; };
 		98EEAF8A2C56C97D007D3C8F /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EEAF892C56C97D007D3C8F /* TicketViewModel.swift */; };
+		D393D8F52C7C9AA800B29470 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8F42C7C9AA800B29470 /* CalendarViewController.swift */; };
+		D393D8F72C7C9B0400B29470 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */; };
+		D393D8FA2C7C9C6300B29470 /* MovieShowtimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */; };
+		D393D8FC2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8FB2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +148,10 @@
 		98EEAF852C56BF05007D3C8F /* Tickets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tickets.json; sourceTree = "<group>"; };
 		98EEAF872C56C020007D3C8F /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
 		98EEAF892C56C97D007D3C8F /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
+		D393D8F42C7C9AA800B29470 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieShowtimeCell.swift; sourceTree = "<group>"; };
+		D393D8FB2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				98007CBB2C5699D1009B5A1C /* UpcomingMoviesDetailsViewController.swift */,
+				D393D8FB2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift */,
 			);
 			path = UpcomingMoviesDetails;
 			sourceTree = "<group>";
@@ -290,6 +299,8 @@
 		9883BA1E2C416646009D8996 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				D393D8F82C7C9C3700B29470 /* TableViewCell */,
+				D393D8F32C7C9A7700B29470 /* Calendar */,
 				98850A322C52758500B5B453 /* Pay */,
 				9886BC672C5114EF000A95BC /* Order */,
 				988DC11C2C4C1910005EE898 /* Food */,
@@ -464,6 +475,23 @@
 			path = Sheet;
 			sourceTree = "<group>";
 		};
+		D393D8F32C7C9A7700B29470 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				D393D8F42C7C9AA800B29470 /* CalendarViewController.swift */,
+				D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		D393D8F82C7C9C3700B29470 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -545,16 +573,19 @@
 			files = (
 				98850A4A2C52A9BC00B5B453 /* Card.swift in Sources */,
 				98EEAF8A2C56C97D007D3C8F /* TicketViewModel.swift in Sources */,
+				D393D8FA2C7C9C6300B29470 /* MovieShowtimeCell.swift in Sources */,
 				980849DE2C45BC0F00F5924B /* SeatManager.swift in Sources */,
 				98D323B42C4D2BBD008DF8CF /* LottieView.swift in Sources */,
 				9883BA362C41AC89009D8996 /* Seat.swift in Sources */,
 				98850A462C529E0D00B5B453 /* PaymentOptionsViewController.swift in Sources */,
+				D393D8F72C7C9B0400B29470 /* CalendarViewModel.swift in Sources */,
 				98850A3A2C527F5600B5B453 /* CustomTextField.swift in Sources */,
 				980E2A5C2C5E655D00D04800 /* SegmentedControlComponent.swift in Sources */,
 				980E2A502C5CF1BA00D04800 /* Ticket+CoreDataClass.swift in Sources */,
 				9883BA282C416CC5009D8996 /* NowInCinemasCollectionViewCell.swift in Sources */,
 				988DC1112C4AA859005EE898 /* formatPrice+Extension.swift in Sources */,
 				988DC1152C4BF4C8005EE898 /* ArcView.swift in Sources */,
+				D393D8F52C7C9AA800B29470 /* CalendarViewController.swift in Sources */,
 				987C6E232C44470E00816B14 /* MovieShowtimeManager.swift in Sources */,
 				980E2A512C5CF1BA00D04800 /* Ticket+CoreDataProperties.swift in Sources */,
 				987C6E162C428E9C00816B14 /* TimeSlotCollectionViewCell.swift in Sources */,
@@ -591,6 +622,7 @@
 				9886BC692C511506000A95BC /* OrderViewController.swift in Sources */,
 				9883BA202C416680009D8996 /* TabBarController.swift in Sources */,
 				98007CB92C56932E009B5A1C /* UpcomingCollectionViewCell.swift in Sources */,
+				D393D8FC2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift in Sources */,
 				980849E12C45BD4F00F5924B /* SeatsViewController.swift in Sources */,
 				9883BA252C41673A009D8996 /* FoodViewController.swift in Sources */,
 				98850A442C5298C600B5B453 /* AddNewCardViewController.swift in Sources */,
