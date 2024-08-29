@@ -116,7 +116,7 @@ final class AddNewCardViewController: UIViewController {
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
- 
+
             nameTextField.heightAnchor.constraint(equalToConstant: 48),
             cardNumberTextField.heightAnchor.constraint(equalToConstant: 48),
             expiryDateTextField.heightAnchor.constraint(equalToConstant: 48),
@@ -124,14 +124,14 @@ final class AddNewCardViewController: UIViewController {
             addCardButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
- 
+
     private func setupTextFieldDelegates() {
         [nameTextField, cardNumberTextField, expiryDateTextField, cvcTextField].forEach {
             $0.delegate = self
             $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         }
     }
- 
+
     private func allFieldsAreValid() -> Bool {
         let nameIsValid = nameTextField.text?.contains(" ") ?? false && !nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         let cardNumberIsValid = cardNumberTextField.text?.isEmpty == false && cardNumberTextField.text?.replacingOccurrences(of: " ", with: "").count == 16

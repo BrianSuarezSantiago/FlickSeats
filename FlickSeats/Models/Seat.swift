@@ -15,7 +15,7 @@ struct Seat {
     var type: String?
 
     var seatCode: String {
-        get { "\(["A", "B", "C", "D", "E", "F", "G", "H", "J"][row])\(seat)" }
+        get {"\(seat)"}
     }
 
     func isIdentical(_ otherSeat: Seat) -> Bool { seatCode == otherSeat.seatCode }

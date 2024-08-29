@@ -8,7 +8,6 @@
 import Foundation
 
 final class OrderViewModel {
-
     // MARK: - Properties
     private let bookingManager = BookingManager.shared
 
@@ -40,13 +39,17 @@ final class OrderViewModel {
         return selectedMovie?.title ?? "N/A"
     }
 
+    func getFoodImageName(for orderedFood: OrderedFood) -> String {
+        return orderedFood.food.imageName
+    }
+
     var selectedShowtime: MovieShowtime? {
-      guard let movie = selectedMovie,
+        guard let movie = selectedMovie,
             let _ = selectedDate,
             let timeSlot = selectedTimeSlot else {
-        return nil
-      }
-      return MovieShowtime(time: timeSlot.time, movie: movie, price: timeSlot.price, hall: 1, ageRating: 0)
+                return nil
+            }
+        return MovieShowtime(time: timeSlot.time, movie: movie, price: timeSlot.price, hall: 1, ageRating: 0)
     }
 
     // MARK: - Methods

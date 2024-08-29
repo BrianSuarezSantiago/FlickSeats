@@ -28,7 +28,7 @@ struct MockMovie: Decodable {
     let voteAverage: Double
     let voteCount: Int
     let availableCinemas: [Cinema]
-    
+
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
@@ -56,7 +56,7 @@ struct Cinema: Decodable {
     let cinemaId: String
     let cinemaName: String
     let timeSlots: [MockTimeSlot]
-    
+
     enum CodingKeys: String, CodingKey {
         case cinemaId = "cinema_id"
         case cinemaName = "cinema_name"
@@ -70,7 +70,7 @@ enum GenreName: Int, CaseIterable {
     case animation = 16
     case comedy = 35
     case drama = 18
-   
+
     var description: String {
         switch self {
             case .action: return "Action"

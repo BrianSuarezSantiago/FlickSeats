@@ -52,7 +52,7 @@ final class FailureViewController: UIViewController {
 
         return button
     }()
- 
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

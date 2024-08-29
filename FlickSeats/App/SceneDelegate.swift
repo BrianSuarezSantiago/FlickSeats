@@ -12,20 +12,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            guard let windowScene = (scene as? UIWindowScene) else { return }
-            let tabBarController = TabBarController()
-            let navigationController = UINavigationController(rootViewController: tabBarController)
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let tabBarController = TabBarController()
+        let navigationController = UINavigationController(rootViewController: tabBarController)
 
-            window = UIWindow(windowScene: windowScene)
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
 
-            BookingManager.shared.tabBarController = tabBarController
+        BookingManager.shared.tabBarController = tabBarController
 
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            CoreDataManager.shared.persistentContainer = appDelegate.persistentContainer
-        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        CoreDataManager.shared.persistentContainer = appDelegate.persistentContainer
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

@@ -8,7 +8,7 @@
 import UIKit
 
 class MovieShowtimeCell: UITableViewCell {
-    
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
@@ -17,7 +17,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -26,7 +26,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return imageView
     }()
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -35,7 +35,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     private let genreLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -44,7 +44,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -53,7 +53,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     private let hallLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
@@ -62,7 +62,7 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     private let ageRatingLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
@@ -75,18 +75,18 @@ class MovieShowtimeCell: UITableViewCell {
 
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
       //  selectionStyle = .none
         configureAppearance()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupViews() {
         backgroundColor = .clear
         contentView.addSubview(timeLabel)
@@ -96,52 +96,52 @@ class MovieShowtimeCell: UITableViewCell {
         contentView.addSubview(priceLabel)
         contentView.addSubview(hallLabel)
         contentView.addSubview(ageRatingLabel)
-        
+
         NSLayoutConstraint.activate([
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            
+
             posterImageView.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor, constant: 16),
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             posterImageView.widthAnchor.constraint(equalToConstant: 60),
-            
+
             titleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 16),
             titleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor),
-            
+
             genreLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             genreLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            
+
             priceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: posterImageView.bottomAnchor),
-            
+
             hallLabel.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 16),
             hallLabel.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor),
-            
+
             ageRatingLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             ageRatingLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor),
             ageRatingLabel.widthAnchor.constraint(equalToConstant: 40),
             ageRatingLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-    
+
     private func configureAppearance() {
         layer.borderColor = UIColor.gray.withAlphaComponent(0.1).cgColor
         layer.borderWidth = 1.0
         layer.cornerRadius = 12
-        
+
         contentView.layer.cornerRadius = layer.cornerRadius
         contentView.layer.masksToBounds = true
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        
+
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 6.0
         layer.shadowOpacity = 0.1
         layer.masksToBounds = false
     }
-    
+
     func configure(with movieShowtime: MovieShowtime) {
         timeLabel.text = movieShowtime.time
         titleLabel.text = movieShowtime.movie.title
@@ -152,7 +152,7 @@ class MovieShowtimeCell: UITableViewCell {
         priceLabel.text = "Price: \(movieShowtime.price) USD"
         hallLabel.text = "Hall: \(movieShowtime.hall)"
         ageRatingLabel.text = "+\(movieShowtime.ageRating)"
-        
+
         if let posterPath = movieShowtime.movie.posterPath {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let fullPosterURL = baseURL + posterPath

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SeatCollectionViewFlowLayout.swift
 //  FlickSeats
 //
 //  Created by Brian Suárez Santiago on 28/08/24.

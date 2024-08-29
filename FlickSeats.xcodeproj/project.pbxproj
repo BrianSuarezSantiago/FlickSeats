@@ -78,6 +78,7 @@
 		D393D8F72C7C9B0400B29470 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */; };
 		D393D8FA2C7C9C6300B29470 /* MovieShowtimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */; };
 		D393D8FC2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D393D8FB2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift */; };
+		D3B6E5432C7FF75800CB06BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B6E5422C7FF75800CB06BC /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 		D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieShowtimeCell.swift; sourceTree = "<group>"; };
 		D393D8FB2C7C9E0100B29470 /* UpcomingMoviesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMoviesDetailsViewModel.swift; sourceTree = "<group>"; };
+		D3B6E5422C7FF75800CB06BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 		9883BA052C414FB6009D8996 /* FlickSeats */ = {
 			isa = PBXGroup;
 			children = (
+				D3B6E5412C7FF73C00CB06BC /* Constants */,
 				9883BA1D2C4165F9009D8996 /* App */,
 				9883BA1A2C415286009D8996 /* Extensions */,
 				9883BA292C41786E009D8996 /* Models */,
@@ -299,7 +302,6 @@
 		9883BA1E2C416646009D8996 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				D393D8F82C7C9C3700B29470 /* TableViewCell */,
 				D393D8F32C7C9A7700B29470 /* Calendar */,
 				98850A322C52758500B5B453 /* Pay */,
 				9886BC672C5114EF000A95BC /* Order */,
@@ -480,6 +482,7 @@
 			children = (
 				D393D8F42C7C9AA800B29470 /* CalendarViewController.swift */,
 				D393D8F62C7C9B0400B29470 /* CalendarViewModel.swift */,
+				D393D8F82C7C9C3700B29470 /* TableViewCell */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -490,6 +493,14 @@
 				D393D8F92C7C9C6300B29470 /* MovieShowtimeCell.swift */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		D3B6E5412C7FF73C00CB06BC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D3B6E5422C7FF75800CB06BC /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,6 +605,7 @@
 				9886BC6D2C511861000A95BC /* SeatTableViewCell.swift in Sources */,
 				988DC1132C4AB507005EE898 /* AlertManager.swift in Sources */,
 				980E2A532C5CF1D700D04800 /* CoreDataManager.swift in Sources */,
+				D3B6E5432C7FF75800CB06BC /* Constants.swift in Sources */,
 				9886BC642C510873000A95BC /* BookingManager.swift in Sources */,
 				98EEAF882C56C020007D3C8F /* EmptyStateViewController.swift in Sources */,
 				98850A482C529E2900B5B453 /* PaymentOptionView.swift in Sources */,

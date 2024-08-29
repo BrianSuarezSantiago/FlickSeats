@@ -91,7 +91,6 @@ final class NowInCinemasCollectionViewCell: UICollectionViewCell {
     // MARK: - CellLifeCycle
     override func prepareForReuse() {
         super.prepareForReuse()
-
         movieImageView.image = nil
         genreLabel.text = nil
         titleLabel.text = nil
@@ -147,6 +146,7 @@ final class NowInCinemasCollectionViewCell: UICollectionViewCell {
         genreLabel.text = genreNames
 
         voteLabel.text = String(format: "%.1f", movie.voteAverage)
+
         if let posterPath = movie.posterPath {
             let baseURL = "https://image.tmdb.org/t/p/w500"
             let fullPosterURL = baseURL + posterPath

@@ -135,7 +135,7 @@ final class PaymentOptionsViewController: UIViewController {
         viewModel.selectCard(at: selectedView.tag)
         updateSelectedCard()
     }
- 
+
     @objc private func addNewCardTapped() {
         let addNewCardVC = AddNewCardViewController()
         addNewCardVC.delegate = self
@@ -143,7 +143,7 @@ final class PaymentOptionsViewController: UIViewController {
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true, completion: nil)
     }
- 
+
     @objc private func payButtonTapped() {
         print("Debug - Before payment processing:")
         print(BookingManager.shared.getBookingSummary())

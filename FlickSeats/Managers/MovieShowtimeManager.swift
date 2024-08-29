@@ -45,7 +45,7 @@ final class MovieShowtimeManager {
     private func isNowBetween(timeString: String, currentDate: Date) -> Bool {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        
+
         guard let time = formatter.date(from: timeString) else {
             return false
         }

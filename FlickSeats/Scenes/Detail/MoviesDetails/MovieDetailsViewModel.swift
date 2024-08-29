@@ -39,6 +39,7 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
         Task {
             do {
                 let movies = try await networkManager.fetchFromMockAPI()
+
                 if let movie = movies.first(where: { $0.id == movieId }) {
                     await MainActor.run {
                         self.delegate?.movieDetailsFetched(movie)
@@ -65,6 +66,7 @@ final class DefaultMovieDetailsViewModel: MovieDetailsViewModel {
         Task {
             do {
                 let movies = try await networkManager.fetchFromMockAPI()
+
                 if let movie = movies.first(where: { $0.id == movieId }) {
                     let timeSlots = movie.availableCinemas.flatMap { $0.timeSlots }
                     delegate?.timeSlotsFetched(timeSlots)

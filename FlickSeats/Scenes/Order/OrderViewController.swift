@@ -11,7 +11,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
     // MARK: - Properties
     private let viewModel: OrderViewModel
-    
+
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -20,7 +20,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
-    
+
     private let seatsLabel: UILabel = {
         let label = UILabel()
         label.text = "Seats"
@@ -29,7 +29,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let seatsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return tableView
     }()
-    
+
     private let snacksLabel: UILabel = {
         let label = UILabel()
         label.text = "Snacks"
@@ -47,7 +47,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let snacksTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +56,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return tableView
     }()
-    
+
     private let totalLabel: UILabel = {
         let label = UILabel()
         label.text = "Total"
@@ -65,7 +65,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -74,7 +74,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -82,7 +82,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return imageView
     }()
-    
+
     private let movieTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -91,7 +91,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let movieGenreLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -100,7 +100,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let selectedDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -108,14 +108,14 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let payButton: ReusableButton = {
         let button = ReusableButton(title: "Pay", hasBackground: false, fontSize: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
-    
+
     private lazy var movieLabelStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [movieTitleLabel, movieGenreLabel, selectedDateLabel, cinemaLabel, cinemaHallLabel])
         stackView.axis = .vertical
@@ -125,6 +125,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
+
     private lazy var movieStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [posterImageView, movieLabelStackView])
         stackView.axis = .horizontal
@@ -135,7 +136,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
-    
+
     private lazy var seatsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [seatsLabel, seatsTableView])
         stackView.axis = .vertical
@@ -145,8 +146,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
-    
-    
+
     private lazy var snackStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [snacksLabel, snacksTableView])
         stackView.axis = .vertical
@@ -155,7 +155,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
-    
+
     private lazy var totalPriceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [totalLabel, priceLabel])
         stackView.axis = .horizontal
@@ -165,7 +165,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return stackView
     }()
-    
+
     private let cinemaHallLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -173,7 +173,7 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     private let cinemaLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -181,17 +181,17 @@ final class OrderViewController: UIViewController, UITableViewDelegate {
 
         return label
     }()
-    
+
     // MARK: - Init
     init(viewModel: OrderViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -312,8 +312,10 @@ extension OrderViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SnackTableViewCell", for: indexPath) as? SnackTableViewCell ?? SnackTableViewCell(style: .default, reuseIdentifier: "SnackTableViewCell")
             let orderedFood = viewModel.selectedOrderedFood[indexPath.row]
             let price = orderedFood.food.price + orderedFood.size.priceModifier
-            cell.configure(with: orderedFood.food, size: orderedFood.size, price: price, quantity: orderedFood.quantity)
-            return cell
+            let imageName = viewModel.getFoodImageName(for: orderedFood)
+            cell.configure(with: orderedFood.food, size: orderedFood.size, price: price, quantity: orderedFood.quantity, imageName: imageName)
+
+           return cell
         }
         return UITableViewCell()
     }
