@@ -57,7 +57,9 @@ Cada entrada reservada incluye un código QR que puede escanearse en el cine par
 
 - <u>Frameworks:</u> UIKit, Core Data
 
-- <u>Librerías:</u> Lottie-ios 
+- <u>Librerías:</u> Lottie-ios
+
+- <u>Gestor de dependencias:</u> Swift Package Manager
  
 # 🛠 Guía de Instalación <a name="Guía-de-Instalación"></a>
 
@@ -83,6 +85,25 @@ man xed
 3. Ejecuta el proyecto (botón ▶️) dentro del IDE.
 
 # 👀 Consideraciones a tener en cuenta <a name="Consideraciones-a-tener-en-cuenta"></a>
+
+- <u>Entorno de Desarrollo:</u>
+  - Instalar la última versión del IDE Xcode en un dispositivo con sistema operativo MacOS o iPadOS.
+     - La instalación se debe realizar a través de la App Store o a través del [sitio web oficial](https://developer.apple.com/xcode/). La instalación de este software no puede ser descargada a través de `brew` dado que, se trata de un software propietario de Apple.
+
+  - Instalar de las Command Line Tools de Xcode:
+    ```bash
+    xcode-select --install
+    ```
+
+  - Verificar la versión de las herramientas de línea de comandos:
+    ```bash
+    xcode-select -p
+    ```
+
+  - Verificar la versión de Swift que se está utilizando:
+    ```bash
+    swift --version
+    ```
 
 # 🖥️ Propuesta de Ampliación y Posibles Mejoras <a name="Propuesta-de-Ampliación-y-Posibles-Mejoras"></a>
 
