@@ -1,13 +1,9 @@
-
-
 <h1 align="center">🎞️ FlickSeats 🍿</h1>
 
 
 ¡Bienvenido a FlickSeats, la aplicación de reserva de películas!
 
-Esta aplicación para iOS permite a los usuarios reservar entradas de cine de manera rápida y sencilla, sin ningún tipo de problemas, posibilitando la selección de sus horarios
-preferidos, añadir deliciosos aperitivos y guardar las entradas para acceder a ellas más tarde. La aplicación está desarrollada utilizando el potente framework UIKit del lenguaje
-de programación Swift de Apple 
+Esta aplicación para iOS permite a los usuarios reservar entradas de cine de manera rápida y sencilla, sin ningún tipo de problemas, posibilitando la selección de sus horarios preferidos, añadir deliciosos aperitivos y guardar las entradas para acceder a ellas más tarde. La aplicación está desarrollada utilizando el potente framework UIKit del lenguaje de programación Swift de Apple 
 
 
 # 📖 Tabla de contenidos
@@ -30,26 +26,21 @@ de programación Swift de Apple 
 
 - Guardar y ver entradas reservadas
 
-### Explorar y Seleccionar Películas
+### Explorar y seleccionar películas
 
-Los usuarios pueden explorar una amplia gama de películas disponibles para reservar. El catálogo incluye diversos géneros como acción, drama, comedia, thriller, y más.  
-Cada listado de películas proporciona información detallada, incluyendo la duración y las valoraciones de los usuarios. Esto ayuda a los usuarios a tomar una decisión informada.
+Los usuarios pueden explorar una amplia gama de películas disponibles para reservar. El catálogo incluye diversos géneros tales como acción, drama, comedia, thriller, etc. Cada listado de películas proporciona información detallada, incluyendo la duración y una calificación general en función de las valoraciones recibidas por los usuarios, ayudando a los usuarios a tomar una decisión informada.
 
-### Seleccionar Fecha y Hora para los Horarios
+### Seleccionar fecha y hora para los horarios
 
-Un calendario interactivo permite a los usuarios seleccionar la fecha preferida para su película. El calendario muestra las fechas y horarios disponibles de manera intuitiva.  
-Una vez seleccionada una fecha, los usuarios pueden elegir entre varios horarios disponibles. Cada franja horaria muestra la hora de inicio de la película.
+A través de un calendario interactivo permite a los usuarios seleccionar la fecha y hora preferida para su película. El calendario muestra las fechas y horarios disponibles de manera intuitiva para cada una de las películas disponibles. Una vez seleccionada una fecha, los usuarios pueden elegir entre varios horarios disponibles para cada una de las películas disponibles en cartelera.
 
-### Añadir Aperitivos a tu Pedido
+### Añadir aperitivos a tu pedido
 
-Los usuarios pueden elegir entre una variedad de aperitivos, como palomitas, nachos, bebidas y dulces. El menú de aperitivos se actualiza regularmente para incluir nuevos artículos.  
-Los usuarios pueden especificar la cantidad y, para algunos artículos, seleccionar opciones de tamaño o sabor. Esto garantiza que obtengan exactamente lo que desean.
+Los usuarios pueden elegir entre una variedad de aperitivos, como palomitas, bebidas y comida. Los usuarios pueden seleccionar el tamaño de estos y, para algunos artículos, seleccionar opciones sabor, garantizando que obtengan exactamente lo que desean.
 
-### Guardar y Ver Entradas Reservadas
+### Guardar y ver entradas reservadas
 
-Después de seleccionar una película, fecha y aperitivos, los usuarios pueden revisar todo su pedido y hacer cambios antes de confirmar la reserva. Una vez confirmada, las entradas se guardan digitalmente en la aplicación utilizando Core Data.  
-Los usuarios pueden ver sus entradas reservadas en cualquier momento desde la sección 'Mis Entradas', donde tienen la opción de ver las entradas para sesiones futuras y sesiones ya expiradas.  
-Cada entrada reservada incluye un código QR que puede escanearse en el cine para una entrada rápida, eliminando la necesidad de entradas físicas.
+Después de seleccionar una película, fecha y aperitivos, los usuarios pueden revisar todo su pedido y hacer cambios antes de confirmar la reserva y proceder al pago de la misma. Una vez confirmada, las entradas se guardan digitalmente en la aplicación utilizando `Core Data`. Los usuarios pueden visualizar sus entradas reservadas en cualquier momento desde la sección *My Tickets*, donde se dispone la opción de visualizar las entradas para sesiones futuras y sesiones ya expiradas. Cada una de las entradas reservada incluye un código QR que puede escanearse en el cine para una entrada rápida, eliminando la necesidad de entradas físicas.
 
 # ⚙️ Tecnologías y Frameworks <a name="Tecnologías-y-Frameworks"></a>
 
@@ -90,22 +81,58 @@ man xed
   - Instalar la última versión del IDE Xcode en un dispositivo con sistema operativo MacOS o iPadOS.
      - La instalación se debe realizar a través de la App Store o a través del [sitio web oficial](https://developer.apple.com/xcode/). La instalación de este software no puede ser descargada a través de `brew` dado que, se trata de un software propietario de Apple.
 
-  - Instalar de las Command Line Tools de Xcode:
+  - <u>Instalar de las Command Line Tools de Xcode:</u>
     ```bash
     xcode-select --install
     ```
 
-  - Verificar la versión de las herramientas de línea de comandos:
+  - <u>Verificar la versión de las herramientas de línea de comandos:</u>
     ```bash
     xcode-select -p
     ```
 
-  - Verificar la versión de Swift que se está utilizando:
+  - <u>Verificar la versión de Swift que se está utilizando:</u>
     ```bash
     swift --version
     ```
 
+- <u>Generación del diagrama a partir del código fuente:</u>
+  - Descargar la última versión del software PlantUML en formato ["Compiled jar"](https://plantuml.com/download), ubicarlo en el directorio raíz del proyecto y ejecutar el siguiente comando: 
+  ```bash
+  swiftplantuml --output consoleOnly > sources.txt | java -DPLANTUML_LIMIT_SIZE=8192 -jar plantuml-1.2024.6.jar $1
+  ```
+
 # 🖥️ Propuesta de Ampliación y Posibles Mejoras <a name="Propuesta-de-Ampliación-y-Posibles-Mejoras"></a>
+
+1. <u>Recomendaciones personalizadas:</u>
+   - Implementar un sistema de recomendaciones basado en el historial de visualización y preferencias del usuario. Esto puede incluir sugerencias de películas similares a las que han visto o calificado anteriormente.
+
+2. <u>Integración con redes sociales:</u>
+   - Permitir a los usuarios compartir sus planes de cine o sus críticas de películas en redes sociales directamente desde la app. También se podría incluir una opción para ver qué películas están viendo las amistades.
+
+3. <u>Modo offline:</u>
+   - Ofrecer una funcionalidad que permita a los usuarios revisar sus entradas y ver la información de películas incluso cuando no tengan conexión a Internet.
+
+4. <u>Notificaciones y recordatorios:</u>
+   - Implementar notificaciones para recordar a los usuarios sobre sus reservas, así como alertas para próximas funciones o descuentos en aperitivos.
+
+5. <u>Valoraciones y reseñas de usuarios:</u>
+   - Permitir a los usuarios dejar reseñas y calificaciones para las películas que han visto de manera que, ayude a otros usuarios a decidir y, fomentar así una comunidad activa.
+
+6. <u>Opciones de asientos premium:</u>
+   - Ofrecer opciones para reservar asientos premium o especiales dentro del cine, como por ejemplo, asientos en la fila VIP, butacas reclinables, o áreas reservadas en estrenos.
+
+7. <u>Soporte para múltiples idiomas y mejora de la accesibilidad:</u>
+   - Agregar soporte para múltiples idiomas y características de accesibilidad, como modo de alto contraste, texto más grande y lectores de pantalla.
+
+8. <u>Integración con mapas:</u>
+    - Añadir una función para mostrar la ubicación del cine deseado en un mapa integrado y ofrecer indicaciones de cómo llegar al mismo.
+
+9. <u>Ofertas y descuentos exclusivos:</u>
+    - Proporcionar ofertas y descuentos especiales para usuarios frecuentes o para ciertos días de la semana como por ejemplo, el día del espectador. De esta manera, podría incentivar más reservas.
+
+10. <u>Sincronización con el calendario:</u>
+    - Permitir a los usuarios sincronizar sus reservas con su calendario personal para una mejor visualización y planificación.
 
 # 📚 Recursos Empleados <a name="Recursos-Empleados"></a>
 
