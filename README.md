@@ -28,7 +28,7 @@ Esta aplicación para iOS permite a los usuarios reservar entradas de cine de ma
 
 ### Explorar y seleccionar películas
 
-Los usuarios pueden explorar una amplia gama de películas disponibles para reservar. El catálogo incluye diversos géneros tales como acción, drama, comedia, thriller, etc. Cada listado de películas proporciona información detallada, incluyendo la duración y una calificación general en función de las valoraciones recibidas por los usuarios, ayudando a los usuarios a tomar una decisión informada.
+Los usuarios pueden explorar una amplia gama de películas disponibles para reservar. El catálogo incluye diversos géneros tales como acción, drama, comedia, thriller, etc. Cada listado de películas proporciona información detallada como título y género, incluyendo la duración y una calificación general en función de las valoraciones recibidas por los usuarios, ayudando a los usuarios a tomar una decisión informada.
 
 ### Seleccionar fecha y hora para los horarios
 
@@ -40,7 +40,7 @@ Los usuarios pueden elegir entre una variedad de aperitivos, como palomitas, beb
 
 ### Guardar y ver entradas reservadas
 
-Después de seleccionar una película, fecha y aperitivos, los usuarios pueden revisar todo su pedido y hacer cambios antes de confirmar la reserva y proceder al pago de la misma. Una vez confirmada, las entradas se guardan digitalmente en la aplicación utilizando `Core Data`. Los usuarios pueden visualizar sus entradas reservadas en cualquier momento desde la sección *My Tickets*, donde se dispone la opción de visualizar las entradas para sesiones futuras y sesiones ya expiradas. Cada una de las entradas reservada incluye un código QR que puede escanearse en el cine para una entrada rápida, eliminando la necesidad de entradas físicas.
+Después de seleccionar una película, fecha y aperitivos, los usuarios pueden revisar todo su pedido y hacer cambios antes de confirmar la reserva y proceder al pago de la misma. Una vez confirmada, las entradas se guardan digitalmente en la aplicación utilizando `Core Data`. Los usuarios pueden visualizar sus entradas reservadas en cualquier momento desde la sección '*My Tickets*', donde se dispone la opción de visualizar las entradas para sesiones futuras y sesiones ya expiradas. Cada una de las entradas reservada incluye un código QR que puede escanearse en el cine para una entrada rápida, eliminando la necesidad de entradas físicas y colas de espera.
 
 # ⚙️ Tecnologías y Frameworks <a name="Tecnologías-y-Frameworks"></a>
 
