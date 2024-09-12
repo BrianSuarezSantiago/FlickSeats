@@ -47,8 +47,7 @@ final class HomeViewModel {
                     self.delegate?.moviesFetched(movies)
                 }
             } catch let error as NSError {
-                if let underlyingError = error.userInfo[NSUnderlyingErrorKey] as? Error {
-                }
+                if let underlyingError = error.userInfo[NSUnderlyingErrorKey] as? Error {}
                 DispatchQueue.main.async {
                     self.delegate?.showError(error)
                 }
